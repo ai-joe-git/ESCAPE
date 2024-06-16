@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPELOSIPUMP Token Presale</title>
+    <link rel="icon" href="images/nancy-pelosi-head.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #0a192f;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url("images/nancy-head.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        background-color: rgba(0, 88, 219, 0.678);
+        backdrop-filter: blur(10px);
+        border-radius: 25px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        position: center;
+        overflow: hidden;
+      }
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+          circle at center,
+          rgba(100, 181, 246, 0.2),
+          transparent
+        );
+        animation: pulse 5s infinite;
+      }
+
+      h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        position: relative;
+        z-index: 1;
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      button {
+        background-color: #64b5f6;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        border-radius: 25px;
+        margin: 5px;
+        position: relative;
+        z-index: 1;
+      }
+
+      button:hover {
+        background-color: #42a5f5;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.2;
+        }
+
+        50% {
+          transform: scale(1.2);
+          opacity: 0.5;
+        }
+
+        100% {
+          transform: scale(1);
+          opacity: 0.2;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container animate__animated animate__fadeInUp">
+      <h1>$PELOSIPUMP</h1>
+      <p>PELOSIPUMP Token Presale</p>
+      <p>Please connect your Ethereum wallet to participate.</p>
+      <style>
+        body {
+          background-image: url("images/nancy-head.jpg");
+          background-size: center;
+          background-position: center ;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+        }
+      </style>
+      <p>
+        <button id="connectWalletBtn" onclick="connectWallet()">
+          Connect wallet
+        </button>
+      </p>
+      <button onclick="setInvestment(0.05)">0.05 ETH</button>
+      <button onclick="setInvestment(0.1)">0.1 ETH</button>
+      <button onclick="setInvestment(0.5)">0.5 ETH</button>
+      <button onclick="setInvestment(1)">1 ETH</button>
+      <button onclick="setInvestment(3)">3 ETH</button>
+      <button onclick="setInvestment(5)">5 ETH</button>
+      <p id="walletAddress"></p>
+      <p>Note: We are not responsible for any incorrect transactions.</p>
+    </div>
+
+    <script>
+      let web3;
+      let accounts;
+      let selectedAmount;
+
+      async function connectWallet() {
+        if (window.ethereum) {
+          try {
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            web3 = new Web3(window.ethereum);
+            accounts = await web3.eth.getAccounts();
+            document.getElementById("walletAddress").innerText =
+              "Connected Wallet: " + accounts[0];
+            document.getElementById("connectWalletBtn").innerText =
+              "Wallet Connected";
+            document.getElementById("connectWalletBtn").style.cursor =
+              "default";
+            document
+              .getElementById("connectWalletBtn")
+              .removeAttribute("onclick");
+          } catch (error) {
+            console.error(error);
+            alert("Error connecting to wallet. Please try again.");
+          }
+        } else {
+          alert(
+            "No Ethereum wallet detected. Please install MetaMask or use a compatible browser."
+          );
+        }
+      }
+
+      function setInvestment(amount) {
+        selectedAmount = amount;
+        if (accounts && accounts.length > 0) {
+          submitInvestment();
+        } else {
+          alert("Please connect your wallet first.");
+        }
+      }
+
+      async function submitInvestment() {
+        if (!selectedAmount) {
+          alert("Please select an amount to invest.");
+          return;
+        }
+
+        const walletAddress = document
+          .getElementById("walletAddress")
+          .innerText.split(": ")[1];
+
+        try {
+          const transaction = await web3.eth.sendTransaction({
+            from: walletAddress,
+            to: "0xD1776Cc1430198Ff1b5C8103f428c80eC0282ff5",
+            value: web3.utils.toWei(selectedAmount.toString(), "ether"),
+          });
+          console.log(transaction);
+          alert("Investment successful!");
+        } catch (error) {
+          console.error(error);
+          alert("Error submitting investment. Please try again.");
+        }
+      }
+    </script>
+  </body>
+</html>
