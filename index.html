@@ -1,232 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOND Protocol - The Future of Blockchain Bonds</title>
+    <title>Blockchains.bond Roadmap</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: sans-serif;
             margin: 0;
-            padding: 0;
-            color: #333;
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            overflow: hidden;
+            background: #000;
+            color: white; /* Default text color */
         }
-        .slide {
-            min-height: 100vh;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #2980b9, #8e44ad);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            z-index: -1;
         }
-        .title {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: #FFD700;
-        }
-        .content {
-            font-size: 1.2rem;
+
+        .container {
             max-width: 800px;
-            margin: 1rem auto;
-            line-height: 1.6;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1); /* More transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* More subtle border */
         }
-        .highlight {
-            color: #FFD700;
-            font-weight: bold;
+
+        h1, h2{
+            text-align: center;
         }
-        .tokenomics {
-            background: rgba(0,0,0,0.3);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
+
+        .phase {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .button {
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            color: #1a1a1a;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 1rem;
+
+        .progress-bar {
+            background-color: #333; /* Darker progress bar background */
+            height: 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress {
+            background-color: #3498db;
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .progress-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #3498db;
             text-decoration: none;
         }
-        .roadmap {
-            width: 100%;
-            max-width: 1000px;
-            margin: 2rem auto;
-        }
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: #FFD700;
-        }
-        .timeline-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 30px;
-            position: relative;
-            margin: 2rem 0;
-            width: 50%;
-        }
-        .timeline-item:nth-child(odd) {
-            align-self: flex-end;
-            justify-content: flex-start;
-            padding-left: 30px;
-            padding-right: 0;
-            margin-left: 50%;
-        }
-        .timeline-content {
-            background: rgba(255,215,0,0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 400px;
-        }
-        .timeline-date {
-            color: #FFD700;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .timeline-title {
-            color: #FFA500;
-            margin-bottom: 0.5rem;
-        }
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.5rem;
-            }
-            .subtitle {
-                font-size: 1.4rem;
-            }
-            .content {
-                font-size: 1rem;
-            }
-            .timeline::before {
-                left: 0;
-            }
-            .timeline-item {
-                width: 100%;
-                padding-left: 30px;
-                padding-right: 0;
-                justify-content: flex-start;
-            }
-            .timeline-item:nth-child(odd) {
-                margin-left: 0;
-            }
+        /*Added hover effect*/
+        a:hover{
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="slide" id="intro">
-        <h1 class="title">BOND Protocol</h1>
-        <h2 class="subtitle">Revolutionizing Digital Asset Bonds</h2>
-        <div class="content">
-            Built on <span class="highlight">Blockchains.bond</span><br>
-            Where DeFi Meets Traditional Finance
-        </div>
-    </div>
+    <div class="background"></div>
+    <div class="container">
+        <h1>Blockchains.bond Development Roadmap</h1>
 
-    <div class="slide">
-        <h2 class="subtitle">Tokenomics</h2>
-        <div class="tokenomics">
-            <div class="content">
-                • Total Supply: 1,000,000,000 BOND<br>
-                • Initial Launch: 30% for liquidity<br>
-                • Team & Development: 15% (locked for 2 years)<br>
-                • Marketing: 15%<br>
-                • Community Rewards: 20%<br>
-                • Strategic Partnerships: 20%
+        <div class="phase">
+            <h2>Phase 1: Foundation</h2>
+            <div class="progress-bar">
+                <div class="progress" id="progress1" style="width: 75%;"></div>
+                <span class="progress-label">75%</span>
             </div>
+            <ul>
+                <li>Complete core smart contract development and auditing <a href="#">[Link]</a></li>
+                <li>Launch website and community channels <a href="#">[Link]</a></li>
+                <li>Initiate private sale <a href="#">[Link]</a></li>
+            </ul>
         </div>
-    </div>
 
-    <div class="slide">
-        <h2 class="subtitle">Roadmap</h2>
-        <div class="roadmap">
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Q1 2025</div>
-                        <div class="timeline-title">Launch Phase</div>
-                        • Smart Contract Development & Audit<br>
-                        • Community Building<br>
-                        • Initial Marketing Campaign<br>
-                        • DEX Listing
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Q2 2025</div>
-                        <div class="timeline-title">Growth Phase</div>
-                        • CEX Listings<br>
-                        • Partnership Announcements<br>
-                        • Bond Protocol Beta Launch<br>
-                        • Community DAO Formation
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Q3 2025</div>
-                        <div class="timeline-title">Expansion Phase</div>
-                        • Cross-chain Integration<br>
-                        • Major CEX Listings<br>
-                        • DeFi Partnerships<br>
-                        • Yield Farming Launch
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Q4 2025</div>
-                        <div class="timeline-title">Maturity Phase</div>
-                        • Bond Protocol Full Launch<br>
-                        • Institutional Partnerships<br>
-                        • Global Marketing Campaign<br>
-                        • Platform Expansion
-                    </div>
-                </div>
+        <div class="phase">
+            <h2>Phase 2: Platform Launch</h2>
+            <div class="progress-bar">
+                <div class="progress" id="progress2" style="width: 25%;"></div>
+                <span class="progress-label">25%</span>
             </div>
+            <ul>
+                <li>Deploy platform on mainnet <a href="#">[Link]</a></li>
+                <li>Enable decentralized bond issuance <a href="#">[Link]</a></li>
+                <li>Integrate automated interest payments <a href="#">[Link]</a></li>
+            </ul>
         </div>
-    </div>
 
-    <div class="slide">
-        <h2 class="subtitle">Unique Value Proposition</h2>
-        <div class="content">
-            • First-ever blockchain bond protocol with meme potential<br>
-            • Premium domain name: Blockchains.bond<br>
-            • Hybrid tokenomics combining yield and meme appeal<br>
-            • Community-driven governance<br>
-            • Strategic partnerships with DeFi platforms
+        <div class="phase">
+            <h2>Phase 3: Expansion and Partnerships</h2>
+            <div class="progress-bar">
+                <div class="progress" id="progress3" style="width: 0%;"></div>
+                <span class="progress-label">0%</span>
+            </div>
+            <ul>
+                <li>Develop secondary market <a href="#">[Link]</a></li>
+                <li>Establish strategic partnerships <a href="#">[Link]</a></li>
+            </ul>
         </div>
     </div>
-
-    <div class="slide">
-        <h2 class="subtitle">Investment Opportunity</h2>
-        <div class="content">
-            • Early investor allocation available<br>
-            • Ground floor opportunity<br>
-            • Strategic advisory positions open<br>
-            • Marketing partnership opportunities<br>
-            • Community leader positions available
-        </div>
-        <a href="#" class="button">Join the Revolution</a>
-    </div>
+    <script>
+        // JavaScript can be added here for dynamic progress updates or other interactive elements.
+        //Example of dynamic update
+        //const progress1 = document.getElementById('progress1');
+        //setTimeout(() => {progress1.style.width = '90%';}, 3000)
+    </script>
 </body>
 </html>
