@@ -5,32 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blockchains.bond</title>
     <style>
-        /* Basic Styling - Expand upon this */
         body {
             font-family: sans-serif;
             margin: 0;
-            background: #111; /* Dark background */
-            color: #eee; /* Light text */
+            background: #111;
+            color: #eee;
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            scroll-behavior: smooth; /* Smooth scrolling */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         header {
             background: rgba(0, 0, 0, 0.5);
             padding: 20px;
-            text-align: center;
+            position: fixed; /* Fixed header */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100; /* Ensure header is on top */
         }
 
         nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            text-align: center; /* Center the nav items */
         }
 
         nav li {
-            display: inline;
-            margin: 0 10px;
+            display: inline-block; /* Use inline-block for spacing */
+            margin: 0 15px; /* Adjust spacing as needed */
         }
 
         nav a {
@@ -44,13 +48,14 @@
         }
 
         section {
-            padding: 50px;
+            padding: 80px 20px; /* Reduced vertical padding, added horizontal padding */
             text-align: center;
-            min-height: 50vh; /* Ensure sections take up at least half the viewport height */
+            min-height: auto; /* Remove fixed min-height */
+            margin-bottom: 40px; /* Add margin between sections */
         }
 
         #hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("placeholder-hero.jpg"); /* Replace with your image */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("placeholder-hero.jpg");
             background-size: cover;
             background-position: center;
             color: white;
@@ -58,18 +63,21 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 80vh; /* Adjust hero height */
         }
         #hero h1{
             font-size: 3em;
         }
+
         .container {
             max-width: 960px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px; /* Add horizontal padding */
         }
+
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
@@ -79,22 +87,28 @@
             border-radius: 8px;
             text-align: left;
         }
-        footer{
+
+        footer {
             background: #333;
             padding: 20px;
             text-align: center;
+            position: relative; /* Ensure footer stays at the bottom */
+            bottom: 0;
+            width: 100%;
         }
 
-        /* Basic Responsive Design */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
+            nav ul {
+                text-align: center; /* Center nav on mobile */
+            }
             nav li {
                 display: block;
                 margin: 10px 0;
             }
-        }
-        /*Smooth Scroll*/
-        html {
-            scroll-behavior: smooth;
+            #hero h1{
+                font-size: 2em;
+            }
         }
     </style>
 </head>
@@ -117,7 +131,6 @@
             <p>Revolutionizing Finance Through Decentralized Bonds.</p>
             <button>Learn More</button>
         </div>
-
     </section>
 
     <section id="about">
@@ -158,19 +171,19 @@
         </div>
     </section>
 
-        <section id="contact">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <p>Get in touch with us.</p>
-            </div>
-        </section>
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us.</p>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; 2024 Blockchains.bond</p>
     </footer>
 
     <script>
-        // Basic JavaScript - add more as needed
+        // JavaScript can be added here
     </script>
 
 </body>
