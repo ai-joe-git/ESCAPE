@@ -5,114 +5,339 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blockchains.bond</title>
     <style>
-        body {
-            font-family: sans-serif;
+        :root {
+            --primary: #3498db;
+            --accent: #2ecc71;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-hover: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
             margin: 0;
-            background: #111;
-            color: #eee;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: #0f0f11;
+            color: #fff;
             line-height: 1.6;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
+        .animated-bg {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #0f0f11, #1a1a1a);
+            animation: bgAnimation 15s ease infinite;
+        }
+
+        @keyframes bgAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         header {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(15, 15, 17, 0.8);
+            backdrop-filter: blur(10px);
             padding: 20px;
-            position: fixed; /* Fixed header */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100; /* Ensure header is on top */
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 15px;
+            background: rgba(15, 15, 17, 0.95);
         }
 
         nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
-            text-align: center; /* Center the nav items */
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
         }
 
         nav li {
-            display: inline-block; /* Use inline-block for spacing */
-            margin: 0 15px; /* Adjust spacing as needed */
+            position: relative;
         }
 
         nav a {
-            color: #eee;
+            color: #fff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         nav a:hover {
-            color: #3498db;
+            color: var(--primary);
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: var(--glass-hover);
         }
 
         section {
-            padding: 80px 20px; /* Reduced vertical padding, added horizontal padding */
-            text-align: center;
-            min-height: auto; /* Remove fixed min-height */
-            margin-bottom: 40px; /* Add margin between sections */
+            padding: 100px 20px;
+            min-height: auto;
         }
 
         #hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("placeholder-hero.jpg");
-            background-size: cover;
-            background-position: center;
-            color: white;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            min-height: 80vh; /* Adjust hero height */
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        #hero h1{
-            font-size: 3em;
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        #hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleAnimation 1s ease-out;
+        }
+
+        @keyframes titleAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-description {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
         }
 
         .container {
-            max-width: 960px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px; /* Add horizontal padding */
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
         }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
 
         .feature {
-            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            background: var(--glass-hover);
+        }
+
+        .feature h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        #roadmap {
+            position: relative;
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .roadmap-item {
+            margin-bottom: 50px;
+            position: relative;
             padding: 20px;
+            background: var(--glass);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .roadmap-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #contact {
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--glass);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            text-align: left;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         footer {
-            background: #333;
-            padding: 20px;
+            background: rgba(15, 15, 17, 0.9);
+            padding: 40px 20px;
             text-align: center;
-            position: relative; /* Ensure footer stays at the bottom */
-            bottom: 0;
-            width: 100%;
+            backdrop-filter: blur(10px);
         }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             nav ul {
-                text-align: center; /* Center nav on mobile */
+                flex-direction: column;
+                gap: 15px;
             }
-            nav li {
-                display: block;
-                margin: 10px 0;
+
+            #hero h1 {
+                font-size: 2.5em;
             }
-            #hero h1{
+
+            .hero-description {
+                font-size: 1.2em;
+            }
+
+            .section-title {
                 font-size: 2em;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <div class="animated-bg"></div>
 
     <header>
         <nav>
@@ -126,39 +351,41 @@
     </header>
 
     <section id="hero">
-        <div class="container">
+        <div class="hero-content">
             <h1>Blockchains.bond</h1>
-            <p>Revolutionizing Finance Through Decentralized Bonds.</p>
-            <button>Learn More</button>
+            <p class="hero-description">Transforming Traditional Finance Through Decentralized Bond Markets</p>
+            <button class="cta-button">Explore Platform</button>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <h2>About Us</h2>
-            <p>Blockchains.bond is a decentralized finance protocol that enables secure and transparent bond issuance and investment. We are building a future where finance is accessible to everyone.</p>
+            <h2 class="section-title">Redefining Bond Markets</h2>
+            <div class="glass-card">
+                <p>Blockchains.bond stands at the forefront of financial innovation, merging traditional bond markets with blockchain technology. Our platform democratizes access to bond investments while ensuring unparalleled security and transparency through distributed ledger technology.</p>
+            </div>
         </div>
     </section>
 
     <section id="features">
         <div class="container">
-            <h2>Key Features</h2>
+            <h2 class="section-title">Premium Features</h2>
             <div class="feature-grid">
                 <div class="feature">
-                    <h3>Decentralized Bonds</h3>
-                    <p>Issue and invest in bonds directly on the blockchain.</p>
+                    <h3>Smart Contract Bonds</h3>
+                    <p>Issue and trade bonds with programmable terms, automated interest payments, and transparent execution through smart contracts.</p>
                 </div>
                 <div class="feature">
-                    <h3>Fractional Ownership</h3>
-                    <p>Invest in fractions of bonds, making high-value investments accessible.</p>
+                    <h3>Fractional Investment</h3>
+                    <p>Access premium bond investments with minimal capital through fractional ownership, democratizing institutional-grade opportunities.</p>
                 </div>
                 <div class="feature">
-                    <h3>Automated Payments</h3>
-                    <p>Smart contracts automate interest payments for seamless transactions.</p>
+                    <h3>Real-Time Settlement</h3>
+                    <p>Experience instant settlement and clearing of bond transactions, eliminating traditional market delays and intermediaries.</p>
                 </div>
                 <div class="feature">
-                    <h3>Transparency and Security</h3>
-                    <p>Blockchain technology ensures transparency and security for all transactions.</p>
+                    <h3>Enhanced Security</h3>
+                    <p>Benefit from military-grade encryption and distributed consensus mechanisms ensuring maximum security for your investments.</p>
                 </div>
             </div>
         </div>
@@ -166,25 +393,82 @@
 
     <section id="roadmap">
         <div class="container">
-            <h2>Roadmap</h2>
-            <p>Our journey to revolutionize finance.</p>
+            <h2 class="section-title">Strategic Roadmap</h2>
+            <div class="roadmap-timeline">
+                <div class="roadmap-item">
+                    <h3>Q1 2024</h3>
+                    <p>Platform Beta Launch & Initial Market Testing</p>
+                </div>
+                <div class="roadmap-item">
+                    <h3>Q2 2024</h3>
+                    <p>Integration with Major DeFi Protocols</p>
+                </div>
+                <div class="roadmap-item">
+                    <h3>Q3 2024</h3>
+                    <p>Global Market Expansion & Institutional Partnerships</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="contact">
         <div class="container">
-            <h2>Contact Us</h2>
-            <p>Get in touch with us.</p>
+            <h2 class="section-title">Connect With Us</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-input" placeholder="Your Message" rows="5"></textarea>
+                    </div>
+                    <button class="cta-button">Send Message</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Blockchains.bond</p>
+        <p>&copy; 2024 Blockchains.bond - Revolutionizing Bond Markets</p>
     </footer>
 
     <script>
-        // JavaScript can be added here
-    </script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Roadmap animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.roadmap-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
 </body>
 </html>
