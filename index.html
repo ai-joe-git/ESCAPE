@@ -178,6 +178,32 @@
             to { opacity: 1; }
         }
 
+        .token-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .token-stat-item {
+            background: var(--glass);
+            padding: 15px 25px;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+
+        .token-stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .token-stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
         .cta-button {
             background: linear-gradient(45deg, var(--primary), var(--accent));
             color: white;
@@ -245,6 +271,26 @@
         .feature h3 {
             color: var(--primary);
             margin-bottom: 15px;
+        }
+
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .tokenomics-item {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .tokenomics-value {
+            font-size: 2em;
+            color: var(--primary);
+            margin-bottom: 10px;
         }
 
         .roadmap-timeline {
@@ -359,6 +405,7 @@
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
+                <li><a href="#token">$BOND Token</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#roadmap">Roadmap</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -370,7 +417,7 @@
         <div class="hero-content">
             <h1>Blockchains.bond</h1>
             <p class="hero-description">Transforming Traditional Finance Through Decentralized Bond Markets</p>
-            <button class="cta-button">Explore Platform</button>
+            <button class="cta-button">Get $BOND Token</button>
         </div>
     </section>
 
@@ -379,6 +426,45 @@
             <h2 class="section-title">Redefining Bond Markets</h2>
             <div class="glass-card">
                 <p>Blockchains.bond stands at the forefront of financial innovation, merging traditional bond markets with blockchain technology. Our platform democratizes access to bond investments while ensuring unparalleled security and transparency through distributed ledger technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="token">
+        <div class="container">
+            <h2 class="section-title">$BOND Token</h2>
+            <div class="token-stats">
+                <div class="token-stat-item">
+                    <div class="token-stat-value">100M</div>
+                    <div class="token-stat-label">Total Supply</div>
+                </div>
+                <div class="token-stat-item">
+                    <div class="token-stat-value">2%</div>
+                    <div class="token-stat-label">Transaction Fee</div>
+                </div>
+                <div class="token-stat-item">
+                    <div class="token-stat-value">50%</div>
+                    <div class="token-stat-label">Locked Liquidity</div>
+                </div>
+            </div>
+            
+            <div class="tokenomics-grid">
+                <div class="tokenomics-item">
+                    <div class="tokenomics-value">40%</div>
+                    <p>Public Sale</p>
+                </div>
+                <div class="tokenomics-item">
+                    <div class="tokenomics-value">25%</div>
+                    <p>Platform Development</p>
+                </div>
+                <div class="tokenomics-item">
+                    <div class="tokenomics-value">20%</div>
+                    <p>Liquidity Pool</p>
+                </div>
+                <div class="tokenomics-item">
+                    <div class="tokenomics-value">15%</div>
+                    <p>Team & Advisors</p>
+                </div>
             </div>
         </div>
     </section>
@@ -392,16 +478,16 @@
                     <p>Issue and trade bonds with programmable terms, automated interest payments, and transparent execution through smart contracts.</p>
                 </div>
                 <div class="feature">
-                    <h3>Fractional Investment</h3>
-                    <p>Access premium bond investments with minimal capital through fractional ownership, democratizing institutional-grade opportunities.</p>
+                    <h3>$BOND Staking</h3>
+                    <p>Stake $BOND tokens to earn platform fees and gain governance rights in the Blockchains.bond ecosystem.</p>
                 </div>
                 <div class="feature">
                     <h3>Real-Time Settlement</h3>
                     <p>Experience instant settlement and clearing of bond transactions, eliminating traditional market delays and intermediaries.</p>
                 </div>
                 <div class="feature">
-                    <h3>Enhanced Security</h3>
-                    <p>Benefit from military-grade encryption and distributed consensus mechanisms ensuring maximum security for your investments.</p>
+                    <h3>Governance Rights</h3>
+                    <p>$BOND holders can participate in platform governance decisions and shape the future of decentralized bond markets.</p>
                 </div>
             </div>
         </div>
@@ -412,16 +498,29 @@
             <h2 class="section-title">Strategic Roadmap</h2>
             <div class="roadmap-timeline">
                 <div class="roadmap-item">
-                    <h3>Q1 2025</h3>
-                    <p>Platform Beta Launch & Initial Market Testing</p>
+                    <h3>Phase 1: Foundation</h3>
+                    <p>- $BOND Token Launch on EVM Chains<br>
+                       - Initial DEX Offering (IDO)<br>
+                       - Smart Contract Audit<br>
+                       - Liquidity Pool Establishment</p>
                 </div>
                 <div class="roadmap-item">
-                    <h3>Q2 2025</h3>
-                    <p>Integration with Major DeFi Protocols</p>
+                    <h3>Phase 2: Platform Development</h3>
+                    <p>- Platform Beta Launch<br>
+                       - Staking Mechanism Implementation<br>
+                       - Governance Framework Development</p>
                 </div>
                 <div class="roadmap-item">
-                    <h3>Q3 2025</h3>
-                    <p>Global Market Expansion & Institutional Partnerships</p>
+                    <h3>Phase 3: Expansion</h3>
+                    <p>- Major DeFi Protocol Integrations<br>
+                       - Cross-chain Implementation<br>
+                       - Institutional Partnership Program</p>
+                </div>
+                <div class="roadmap-item">
+                    <h3>Phase 4: Maturity</h3>
+                    <p>- Global Market Expansion<br>
+                       - Advanced Trading Features<br>
+                       - Enhanced Governance System</p>
                 </div>
             </div>
         </div>
@@ -445,7 +544,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Blockchains.bond - Revolutionizing Bond Markets</p>
+        <p>&copy; 2025 Blockchains.bond - Revolutionizing Bond Markets with $BOND Token</p>
     </footer>
 
     <script>
