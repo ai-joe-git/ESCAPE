@@ -64,22 +64,24 @@
             transition: all 0.3s ease;
         }
 
-        header.scrolled {
-            padding: 15px;
-            background: rgba(15, 15, 17, 0.95);
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
-            text-align: center;
             display: flex;
             justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
             gap: 30px;
         }
 
         nav li {
+            flex: 0 0 auto;
             position: relative;
         }
 
@@ -89,7 +91,8 @@
             font-weight: 500;
             font-size: 1.1em;
             transition: all 0.3s ease;
-            padding: 5px 0;
+            padding: 5px 15px;
+            white-space: nowrap;
         }
 
         nav a::after {
@@ -244,10 +247,6 @@
             margin-bottom: 15px;
         }
 
-        #roadmap {
-            position: relative;
-        }
-
         .roadmap-timeline {
             position: relative;
             max-width: 800px;
@@ -314,8 +313,14 @@
 
         @media (max-width: 768px) {
             nav ul {
-                flex-direction: column;
                 gap: 15px;
+                justify-content: space-between;
+                padding: 0 10px;
+            }
+
+            nav a {
+                font-size: 0.9em;
+                padding: 5px 8px;
             }
 
             #hero h1 {
@@ -332,6 +337,17 @@
 
             .feature-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 0.8em;
+                padding: 5px;
             }
         }
     </style>
@@ -396,15 +412,15 @@
             <h2 class="section-title">Strategic Roadmap</h2>
             <div class="roadmap-timeline">
                 <div class="roadmap-item">
-                    <h3>Q1 2025</h3>
+                    <h3>Q1 2024</h3>
                     <p>Platform Beta Launch & Initial Market Testing</p>
                 </div>
                 <div class="roadmap-item">
-                    <h3>Q2 2025</h3>
+                    <h3>Q2 2024</h3>
                     <p>Integration with Major DeFi Protocols</p>
                 </div>
                 <div class="roadmap-item">
-                    <h3>Q3 2025</h3>
+                    <h3>Q3 2024</h3>
                     <p>Global Market Expansion & Institutional Partnerships</p>
                 </div>
             </div>
@@ -429,7 +445,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Blockchains.bond - Revolutionizing Bond Markets</p>
+        <p>&copy; 2024 Blockchains.bond - Revolutionizing Bond Markets</p>
     </footer>
 
     <script>
