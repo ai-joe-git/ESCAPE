@@ -53,7 +53,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        header { /* ... (all other styles from index.html) ... */
+        header {
             background: rgba(15, 15, 17, 0.8);
             backdrop-filter: blur(10px);
             padding: 20px;
@@ -209,6 +209,9 @@
             margin-bottom: 50px;
             text-align: center;
             position: relative;
+            background: linear-gradient(45deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .section-title::after {
@@ -292,6 +295,7 @@
             color: var(--primary);
             margin-bottom: 5px;
         }
+        
         .tokenomics-item p {
             font-size: 0.9em;
         }
@@ -360,6 +364,72 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Quantum Proof specific styles */
+        #quantum-proof-section {
+            padding-top: 150px;
+        }
+
+        .quantum-proof-content {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quantum-proof-content p {
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: justify;
+        }
+
+        .quantum-proof-content ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 30px 0;
+        }
+
+        .quantum-proof-content ul li {
+            background: var(--glass);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .quantum-proof-content ul li:hover {
+            transform: translateX(10px);
+            background: var(--glass-hover);
+        }
+
+        .quantum-proof-content ul li b {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
         @media (max-width: 768px) {
             nav ul {
                 gap: 15px;
@@ -387,6 +457,10 @@
             .feature-grid {
                 grid-template-columns: 1fr;
             }
+
+            .quantum-proof-content ul li {
+                padding: 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -398,32 +472,18 @@
                 font-size: 0.8em;
                 padding: 5px;
             }
+            
             .token-stats {
                 grid-template-columns: 1fr;
             }
+            
             .tokenomics-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        /* Styles for the Quantum Proof page content */
-        #quantum-proof-section {
-            padding-top: 150px; /* Adjust as needed */
-        }
-        .quantum-proof-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .quantum-proof-content h2 {
-            margin-bottom: 20px;
-        }
-        .quantum-proof-content p {
-            margin-bottom: 15px;
-        }
-        .quantum-proof-content ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            margin-bottom: 15px;
+            .quantum-proof-content p {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -448,17 +508,30 @@
             <div class="quantum-proof-content">
                 <h2 class="section-title">$BOND: Future-Proofing Finance Against Quantum Threats</h2>
 
-                <p>The rise of quantum computing poses a significant threat to current cryptographic systems that secure blockchain technology. Blockchains.bond recognizes this challenge and is committed to ensuring the long-term security and viability of the $BOND token through a dynamic and adaptive approach.</p>
+                <div class="highlight-box">
+                    <p>The rise of quantum computing poses a significant threat to current cryptographic systems that secure blockchain technology. Blockchains.bond recognizes this challenge and is committed to ensuring the long-term security and viability of the $BOND token through a dynamic and adaptive approach.</p>
+                </div>
 
-                <p>Our strategy is based on the principle of continuous evolution, rather than relying on any single cryptographic solution that could eventually become vulnerable. We achieve this by:</p>
+                <p>Our strategy is based on the principle of continuous evolution, rather than relying on any single cryptographic solution that could eventually become vulnerable. We achieve this through a comprehensive approach that ensures maximum security and adaptability.</p>
 
                 <ul>
-                    <li><b>Monitoring Emerging Technologies:</b> We actively track advancements in quantum-resistant cryptography and blockchain development.</li>
-                    <li><b>Flexible Architecture:</b> The $BOND token's architecture is designed to be adaptable, allowing for seamless migration to more secure blockchain platforms as they emerge.</li>
-                    <li><b>Community Governance:</b> $BOND holders will have a voice in decisions regarding future blockchain migrations, ensuring a decentralized and transparent process.</li>
+                    <li>
+                        <b>Monitoring Emerging Technologies</b>
+                        <p>Our dedicated research team actively tracks advancements in quantum-resistant cryptography and blockchain development, ensuring we stay ahead of potential security threats.</p>
+                    </li>
+                    <li>
+                        <b>Flexible Architecture</b>
+                        <p>The $BOND token's innovative architecture is designed with adaptability at its core, allowing for seamless migration to more secure blockchain platforms as they emerge.</p>
+                    </li>
+                    <li>
+                        <b>Community Governance</b>
+                        <p>$BOND holders are empowered with voting rights in decisions regarding future blockchain migrations, ensuring a truly decentralized and transparent process.</p>
+                    </li>
                 </ul>
 
-                <p>This proactive approach ensures that $BOND remains secure even in the face of future technological advancements, making it a truly future-proof investment in the decentralized financial landscape. We are committed to staying at the forefront of security innovation, ensuring the long-term integrity and value of the $BOND ecosystem.</p>
+                <div class="highlight-box">
+                    <p>This proactive approach ensures that $BOND remains secure even in the face of future technological advancements, making it a truly future-proof investment in the decentralized financial landscape. We are committed to staying at the forefront of security innovation, ensuring the long-term integrity and value of the $BOND ecosystem.</p>
+                </div>
 
                 <p>By not being tied to a single blockchain, $BOND distinguishes itself as a project that prioritizes long-term security and adaptability. This unique approach positions $BOND as a leader in the evolving world of decentralized finance.</p>
             </div>
@@ -470,7 +543,7 @@
     </footer>
 
     <script>
-        // Smooth scrolling for internal links on this page
+        // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -479,9 +552,27 @@
                 });
             });
         });
+
+        // Fade in elements on scroll
+        function fadeInOnScroll() {
+            const elements = document.querySelectorAll('.quantum-proof-content ul li');
+            elements.forEach((element) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateX(0)';
+                }
+            });
+        }
+
+        // Initial call and event listener
+        fadeInOnScroll();
+        window.addEventListener('scroll', fadeInOnScroll);
     </script>
-        <div class="gtranslate_wrapper"></div>
-<script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"languages":["en","fr","it","es"],"wrapper_selector":".gtranslate_wrapper"}</script>
-<script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+    <div class="gtranslate_wrapper"></div>
+    <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"languages":["en","fr","it","es"],"wrapper_selector":".gtranslate_wrapper"}</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 </body>
 </html>
