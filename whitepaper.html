@@ -9,31 +9,41 @@
             font-family: sans-serif;
             line-height: 1.6;
             margin: 20px;
-            color: #333; /* Darker text for better readability */
-            background-color: #f8f8f8; /* Light background for contrast */
+            color: #333;
+            background-color: #f8f8f8;
         }
         h1, h2, h3 {
-            color: #0056b3; /* Blue headings for emphasis */
+            color: #0056b3;
         }
         section {
             margin-bottom: 30px;
             padding: 20px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .image-placeholder {
+        .image-container {
             width: 100%;
-            max-height: 300px;
-            background-color: #eee;
+            max-height: 400px;
             margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-style: italic;
-            color: #999;
+            overflow: hidden;
         }
-
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+        ul {
+            list-style-type: disc; /* Use bullet points */
+            padding-left: 20px; /* Add some left padding for indentation */
+        }
+        li {
+            margin-bottom: 8px; /* Add spacing between list items */
+        }
         /* Basic responsive design */
         @media (max-width: 768px) {
             body {
@@ -41,6 +51,9 @@
             }
             section {
                 padding: 15px;
+            }
+            .image-container {
+                max-height: 300px;
             }
         }
     </style>
@@ -93,7 +106,7 @@
         </ul>
     </section>
 
-     <section>
+    <section>
         <h2>5. Technology</h2>
         <p>$BOND is initially launched as an ERC-20 token on Ethereum and a BEP-20 token on BSC. Bridges will facilitate cross-chain transfers. Future blockchain integrations will be decided by community governance.</p>
     </section>
@@ -115,7 +128,7 @@
             <li><b>Q2 2025:</b> Public sale (IDO/IEO), platform launch on Ethereum and BSC mainnets, liquidity provision, focused outreach to banks and regulatory bodies.</li>
             <li><b>Q3 2025:</b> DAO governance implementation, staking program launch, cross-chain bridge integration, targeted marketing campaigns highlighting the potential of tokenized bonds.</li>
             <li><b>Q4 2025:</b> Expansion of platform features, strategic partnerships with DeFi protocols and traditional financial institutions, active participation in industry events and regulatory discussions.</li>
-             <li><b>2026 Onwards:</b> Scaling solutions, further blockchain integrations, development of advanced bond management tools, focus on real-world adoption through partnerships with states and established financial players.</li>
+            <li><b>2026 Onwards:</b> Scaling solutions, further blockchain integrations, development of advanced bond management tools, focus on real-world adoption through partnerships with states and established financial players.</li>
         </ul>
     </section>
 
@@ -129,7 +142,7 @@
         <p>Security is paramount. Smart contracts will undergo rigorous audits by reputable firms. Best practices for security will be implemented throughout the platform's development and operation.</p>
     </section>
 
-     <section>
+    <section>
         <h2>10. Strategic Partnerships and Institutional Adoption</h2>
         <p>We believe that the future of finance lies in the convergence of traditional and decentralized systems. Our team is actively pursuing partnerships with banks, financial institutions, and even governmental bodies to explore the potential of tokenized bonds. These partnerships will not only drive adoption of the Blockchains.bond platform but also pave the way for a more efficient and inclusive financial landscape. We are confident that $BOND will play a pivotal role in this transformation. Imagine a future where governments and corporations issue bonds directly on the blockchain, streamlining processes and reducing costs significantly. This is the future we are building.</p>
     </section>
@@ -142,3 +155,8 @@
     <section>
         <h2>Disclaimer</h2>
         <p>This whitepaper is for informational purposes only and does not constitute investment advice. Investing in cryptocurrencies carries inherent risks. Conduct thorough research before making any investment decisions.</p>
+    </section>
+
+</body>
+</html>
+
