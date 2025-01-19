@@ -1,165 +1,292 @@
-@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
-html,
-body {
-  width: 100%;
-  height: 100%;
-  font: 700 1em "News Cycle", sans-serif;
-  letter-spacing: .15em;
-  color: #ff6;
-  background: #000;
-  overflow: hidden;
-  margin: 0;
+/* Staking Page Styles */
+.tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
-.starwars section {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  z-index: 1;
-}
-.starwars .start {
-  font-size: 200%;
-  width: 14em;
-  margin: -4em 0 0 -7em;
-  text-align: center;
-  cursor: pointer;
-}
-.starwars .start span {
-  color: #4bd5ee;
-}
-.starwars .intro {
-  width: 15em;
-  margin: 0 0 0 -7.5em;
-  font-size: 200%;
-  font-weight: 400;
-  color: #4bd5ee;
-  opacity: 0;
-  -webkit-animation: intro 6s ease-out 1s;
-          animation: intro 6s ease-out 1s;
-}
-.starwars .logo {
-  opacity: 0;
-  -webkit-animation: logo 9s ease-out 9s;
-          animation: logo 9s ease-out 9s;
-}
-.starwars .logo svg {
-  width: inherit;
-}
-.starwars .titles {
-  width: 14.65em;
-  margin: 0 0 0 -7.325em;
-  top: auto;
-  bottom: 0;
-  height: 50em;
-  font-size: 350%;
-  text-align: justify;
-  overflow: hidden;
-  transform-origin: 50% 100%;
-  transform: perspective(300px) rotateX(25deg);
-}
-.starwars .titles > div {
-  position: absolute;
-  top: 100%;
-  -webkit-animation: titles 81s linear 13s;
-          animation: titles 81s linear 13s;
-}
-.starwars .titles > div > p {
-  margin: 1.35em 0 1.85em 0;
-  line-height: 1.35em;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+.tier-card {
+    background: var(--glass-background);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
 }
 
-@-webkit-keyframes intro {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.tier-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes intro {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.tier-header {
+    margin-bottom: 1.5rem;
 }
-@-webkit-keyframes logo {
-  0% {
-    width: 18em;
-    margin: -9em 0 0 -9em;
-    transform: scale(2.75);
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-    width: 18em;
-    margin: -9em 0 0 -9em;
-  }
-  100% {
-    transform: scale(0.1);
-    opacity: 0;
-    width: 18em;
-    margin: -9em 0 0 -9em;
-  }
+
+.tier-header i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
-@keyframes logo {
-  0% {
-    width: 18em;
-    margin: -9em 0 0 -9em;
-    transform: scale(2.75);
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-    width: 18em;
-    margin: -9em 0 0 -9em;
-  }
-  100% {
-    transform: scale(0.1);
-    opacity: 0;
-    width: 18em;
-    margin: -9em 0 0 -9em;
-  }
+
+.tier-details .detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--glass-border);
 }
-@-webkit-keyframes titles {
-  0% {
-    top: 100%;
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    top: 20%;
-    opacity: 0;
-  }
+
+.calculator-container {
+    background: var(--glass-background);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem 0;
 }
-@keyframes titles {
-  0% {
-    top: 100%;
+
+.calculator-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Roadmap Page Styles */
+.timeline-container {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-phase {
+    margin-bottom: 3rem;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.timeline-phase.active {
     opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    top: 20%;
-    opacity: 0;
-  }
+}
+
+.phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.phase-date {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.milestone-card {
+    background: var(--glass-background);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.milestone-card:hover {
+    transform: translateX(10px);
+}
+
+/* About Page Styles */
+.mission-container {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.value-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--glass-background);
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.team-card {
+    background: var(--glass-background);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.member-image {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    background: var(--background-light);
+}
+
+.placeholder-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-image i {
+    font-size: 3rem;
+    color: var(--text-secondary);
+}
+
+.member-info {
+    padding: 1.5rem;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.contact-info {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.info-card {
+    background: var(--glass-background);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.info-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Special Effects */
+.bronze { color: #cd7f32; }
+.silver { color: #c0c0c0; }
+.gold { color: #ffd700; }
+.platinum { color: #e5e4e2; }
+
+/* Animations for Charts */
+@keyframes chartGrow {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+.chart-bar {
+    animation: chartGrow 1s ease-out;
+    transform-origin: bottom;
+}
+
+/* Loading Animations */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Responsive Design Additional Rules */
+@media (max-width: 1024px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 640px) {
+    .tokenomics-grid,
+    .chain-grid,
+    .tiers-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calculator-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .phase-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .background-animation,
+    .navbar,
+    .footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .glass-container,
+    .glass-section {
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
 }
