@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staking - BLOCKCHAINS.BOND</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span>BLOCKCHAINS.BOND</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="tokenomics.html">Tokenomics</a>
+            <a href="technology.html">Technology</a>
+            <a href="staking.html" class="active">Staking</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="about.html">About</a>
+        </div>
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="glass-container">
+            <h1>Staking System</h1>
+            <p>Earn rewards through our innovative four-tier staking mechanism</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="tiers-overview" class="glass-section">
+            <div class="section-content">
+                <h2>Staking Tiers</h2>
+                <div class="tiers-grid">
+                    <div class="tier-card bronze animate-on-scroll">
+                        <div class="tier-header">
+                            <i class="fas fa-medal bronze"></i>
+                            <h3>Bronze Tier</h3>
+                        </div>
+                        <div class="tier-details">
+                            <div class="detail-item">
+                                <span>Minimum Stake:</span>
+                                <span>10,000 $BOND</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Lock Period:</span>
+                                <span>3 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>APY:</span>
+                                <span>Base rate + 5%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Governance Weight:</span>
+                                <span>1x</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tier-card silver animate-on-scroll">
+                        <div class="tier-header">
+                            <i class="fas fa-medal silver"></i>
+                            <h3>Silver Tier</h3>
+                        </div>
+                        <div class="tier-details">
+                            <div class="detail-item">
+                                <span>Minimum Stake:</span>
+                                <span>50,000 $BOND</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Lock Period:</span>
+                                <span>6 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>APY:</span>
+                                <span>Base rate + 10%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Governance Weight:</span>
+                                <span>2x</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tier-card gold animate-on-scroll">
+                        <div class="tier-header">
+                            <i class="fas fa-medal gold"></i>
+                            <h3>Gold Tier</h3>
+                        </div>
+                        <div class="tier-details">
+                            <div class="detail-item">
+                                <span>Minimum Stake:</span>
+                                <span>100,000 $BOND</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Lock Period:</span>
+                                <span>12 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>APY:</span>
+                                <span>Base rate + 15%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Governance Weight:</span>
+                                <span>3x</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tier-card platinum animate-on-scroll">
+                        <div class="tier-header">
+                            <i class="fas fa-medal platinum"></i>
+                            <h3>Platinum Tier</h3>
+                        </div>
+                        <div class="tier-details">
+                            <div class="detail-item">
+                                <span>Minimum Stake:</span>
+                                <span>250,000 $BOND</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Lock Period:</span>
+                                <span>24 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>APY:</span>
+                                <span>Base rate + 20%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Governance Weight:</span>
+                                <span>4x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="staking-calculator" class="glass-section">
+            <div class="section-content">
+                <h2>Rewards Calculator</h2>
+                <div class="calculator-container">
+                    <div class="calculator-inputs">
+                        <div class="input-group">
+                            <label for="stake-amount">Stake Amount ($BOND)</label>
+                            <input type="number" id="stake-amount" min="0" placeholder="Enter amount">
+                        </div>
+                        <div class="input-group">
+                            <label for="stake-period">Lock Period (months)</label>
+                            <select id="stake-period">
+                                <option value="3">3 months</option>
+                                <option value="6">6 months</option>
+                                <option value="12">12 months</option>
+                                <option value="24">24 months</option>
+                            </select>
+                        </div>
+                        <button class="calculate-btn">Calculate Rewards</button>
+                    </div>
+                    <div class="calculator-results">
+                        <div class="result-item">
+                            <span>Estimated APY:</span>
+                            <span id="estimated-apy">0%</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Total Rewards:</span>
+                            <span id="total-rewards">0 $BOND</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Governance Power:</span>
+                            <span id="governance-power">0x</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="staking-benefits" class="glass-section">
+            <div class="section-content">
+                <h2>Staking Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card animate-on-scroll">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Enhanced Returns</h3>
+                        <p>Earn competitive APY rates through our tiered staking system</p>
+                    </div>
+                    <div class="benefit-card animate-on-scroll">
+                        <i class="fas fa-vote-yea"></i>
+                        <h3>Governance Rights</h3>
+                        <p>Participate in protocol decisions with weighted voting power</p>
+                    </div>
+                    <div class="benefit-card animate-on-scroll">
+                        <i class="fas fa-percentage"></i>
+                        <h3>Fee Reductions</h3>
+                        <p>Enjoy reduced platform fees based on your staking tier</p>
+                    </div>
+                    <div class="benefit-card animate-on-scroll">
+                        <i class="fas fa-lock"></i>
+                        <h3>Security</h3>
+                        <p>Your stakes are protected by advanced smart contract security</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="staking-stats" class="glass-section">
+            <div class="section-content">
+                <h2>Staking Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card animate-on-scroll">
+                        <h3>Total Staked</h3>
+                        <div class="stat-value" id="total-staked">0 $BOND</div>
+                        <div class="stat-chart">
+                            <canvas id="stakedChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <h3>Active Stakers</h3>
+                        <div class="stat-value" id="active-stakers">0</div>
+                        <div class="stat-chart">
+                            <canvas id="stakersChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <h3>Average APY</h3>
+                        <div class="stat-value" id="average-apy">0%</div>
+                        <div class="stat-chart">
+                            <canvas id="apyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BLOCKCHAINS.BOND</h4>
+                <p>Revolutionizing Digital Finance</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="tokenomics.html">Tokenomics</a>
+                <a href="technology.html">Technology</a>
+                <a href="staking.html">Staking</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 BLOCKCHAINS.BOND. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="staking.js"></script>
+</body>
+</html>
