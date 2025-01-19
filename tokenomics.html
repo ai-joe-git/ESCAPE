@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokenomics - BLOCKCHAINS.BOND</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span>BLOCKCHAINS.BOND</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="tokenomics.html" class="active">Tokenomics</a>
+            <a href="technology.html">Technology</a>
+            <a href="staking.html">Staking</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="about.html">About</a>
+        </div>
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="glass-container">
+            <h1>Tokenomics</h1>
+            <p>Discover the economic model behind $BOND token</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="token-metrics" class="glass-section">
+            <div class="section-content">
+                <h2>Token Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card animate-on-scroll">
+                        <h3>Total Supply</h3>
+                        <p class="number-highlight">1,000,000,000</p>
+                        <p class="subtitle">$BOND Tokens</p>
+                    </div>
+                    <div class="metric-card animate-on-scroll">
+                        <h3>Initial Circulating Supply</h3>
+                        <p class="number-highlight">100,000,000</p>
+                        <p class="subtitle">10% of Total Supply</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="distribution" class="glass-section">
+            <div class="section-content">
+                <h2>Token Distribution</h2>
+                <div class="distribution-chart">
+                    <div class="chart-container">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                    <div class="distribution-legend">
+                        <div class="legend-item">
+                            <span class="color-box ecosystem"></span>
+                            <p>Ecosystem Development - 30%</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-box community"></span>
+                            <p>Community Rewards - 25%</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-box team"></span>
+                            <p>Team & Advisors - 15%</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-box treasury"></span>
+                            <p>Treasury - 15%</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-box public"></span>
+                            <p>Public Sale - 10%</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-box liquidity"></span>
+                            <p>Initial Liquidity - 5%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="token-utility" class="glass-section">
+            <div class="section-content">
+                <h2>Token Utility</h2>
+                <div class="utility-grid">
+                    <div class="utility-card animate-on-scroll">
+                        <i class="fas fa-vote-yea"></i>
+                        <h3>Governance Rights</h3>
+                        <p>Participate in protocol decisions and shape the future of BLOCKCHAINS.BOND</p>
+                    </div>
+                    <div class="utility-card animate-on-scroll">
+                        <i class="fas fa-percentage"></i>
+                        <h3>Fee Reduction</h3>
+                        <p>Reduce platform fees by holding and staking $BOND tokens</p>
+                    </div>
+                    <div class="utility-card animate-on-scroll">
+                        <i class="fas fa-coins"></i>
+                        <h3>Staking Rewards</h3>
+                        <p>Earn passive income through our multi-tier staking system</p>
+                    </div>
+                    <div class="utility-card animate-on-scroll">
+                        <i class="fas fa-door-open"></i>
+                        <h3>Platform Access</h3>
+                        <p>Access exclusive features and premium services</p>
+                    </div>
+                    <div class="utility-card animate-on-scroll">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Revenue Sharing</h3>
+                        <p>Participate in platform revenue distribution</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vesting-schedule" class="glass-section">
+            <div class="section-content">
+                <h2>Vesting Schedule</h2>
+                <div class="vesting-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Team & Advisors</h3>
+                            <p>3-year linear vesting with 1-year cliff</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Ecosystem Development</h3>
+                            <p>4-year linear vesting</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Community Rewards</h3>
+                            <p>5-year linear distribution</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fee-structure" class="glass-section">
+            <div class="section-content">
+                <h2>Fee Structure</h2>
+                <div class="fee-cards">
+                    <div class="fee-card animate-on-scroll">
+                        <h3>Transaction Fees</h3>
+                        <div class="fee-breakdown">
+                            <div class="fee-item">
+                                <span>Base Fee:</span>
+                                <span>5%</span>
+                            </div>
+                            <div class="fee-distribution">
+                                <div class="distribution-item">
+                                    <span>Liquidity:</span>
+                                    <span>2%</span>
+                                </div>
+                                <div class="distribution-item">
+                                    <span>Marketing:</span>
+                                    <span>2%</span>
+                                </div>
+                                <div class="distribution-item">
+                                    <span>Development:</span>
+                                    <span>1%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fee-card animate-on-scroll">
+                        <h3>Platform Fees</h3>
+                        <div class="fee-breakdown">
+                            <div class="fee-item">
+                                <span>Bond Issuance:</span>
+                                <span>0.5%</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Trading Fees:</span>
+                                <span>0.3%</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Enterprise Solutions:</span>
+                                <span>Custom</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BLOCKCHAINS.BOND</h4>
+                <p>Revolutionizing Digital Finance</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="tokenomics.html">Tokenomics</a>
+                <a href="technology.html">Technology</a>
+                <a href="staking.html">Staking</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 BLOCKCHAINS.BOND. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="tokenomics.js"></script>
+</body>
+</html>
