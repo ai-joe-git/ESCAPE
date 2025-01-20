@@ -92,16 +92,17 @@ body {
     background: var(--primary-color);
 }
 
+/* Mobile Menu Button */
 .mobile-menu-btn {
     display: none;
-    background-color: rgba(0, 0, 0, 0.3); /* Noir légèrement transparent */
-    backdrop-filter: blur(8px); /* Flou plus prononcé */
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
     border: none;
     cursor: pointer;
     padding: 8px;
     z-index: 1001;
 }
+
 
 
 .mobile-menu-btn span {
