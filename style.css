@@ -95,7 +95,7 @@ body {
 /* Mobile Menu Button */
 .mobile-menu-btn {
     display: none;
-    background: rgba(255, 255, 255, 0.8);
+    background: transparent;
     backdrop-filter: blur(10px);
     border: none;
     cursor: pointer;
@@ -111,6 +111,7 @@ body {
     height: 2px;
     margin: 5px 0;
     background-color: var(--text-primary);
+    backdrop-filter: blur(10px);
     transition: all 0.3s ease;
 }
 
