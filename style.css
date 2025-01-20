@@ -357,3 +357,32 @@ body {
         color: black;
     }
 }
+
+
+/* Add this to your existing CSS */
+main {
+    padding-top: 80px; /* Adjust this value based on your navbar height */
+}
+
+.page-header {
+    margin-top: 64px; /* Adjust this value based on your navbar height */
+}
+
+/* Modify the existing header styles */
+.page-header {
+    padding: 3rem 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Ensure glass sections have proper spacing */
+.glass-section {
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 1200px;
+}
+
