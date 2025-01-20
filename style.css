@@ -265,8 +265,8 @@ body {
         top: 64px;
         left: 0;
         width: 100%;
-        background: rgba(30, 41, 59, 0.95);
-        backdrop-filter: blur(16px);
+        background: rgba(30, 41, 59, 0.98);
+        backdrop-filter: blur(18px);
         padding: 1rem;
         display: none;
         flex-direction: column;
