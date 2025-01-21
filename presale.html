@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$BOND Presale</title>
+    <title>Presale Dapp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Base Styles */
         :root {
@@ -14,7 +15,7 @@
             --glass-border: rgba(255, 255, 255, 0.2); /* Semi-transparent border */
             --text-color: #ffffff; /* White text */
             --shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
-            --gradient-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Gradient background */
+            --gradient-bg: linear-gradient(135deg, #1e1a2f 0%, #2a1e3c 100%); /* Dark purple and blue gradient */
             --button-gradient: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%); /* Button gradient */
         }
 
@@ -39,7 +40,7 @@
             border-radius: 20px;
             border: 1px solid var(--glass-border);
             padding: 2rem;
-            max-width: 500px;
+            max-width: 800px;
             width: 100%;
             text-align: center;
             box-shadow: var(--shadow);
@@ -91,20 +92,46 @@
             box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
         }
 
-        .investment-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 1rem 0;
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
-        #walletAddress {
-            margin: 1rem 0;
-            font-size: 0.8rem;
-            color: var(--text-color);
-            word-break: break-all;
+        .tier-card {
+            background: var(--glass-background);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .tier-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .tier-header i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tier-details .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tier-details .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .bronze { color: #cd7f32; }
+        .silver { color: #c0c0c0; }
+        .gold { color: #ffd700; }
+        .platinum { color: #e5e4e2; }
 
         /* Animations */
         @keyframes fadeIn {
@@ -128,7 +155,7 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             h1 {
                 font-size: 1.5rem;
             }
@@ -141,17 +168,13 @@
                 font-size: 0.9rem;
             }
 
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+
             button {
                 padding: 0.5rem 1rem;
                 font-size: 0.9rem;
-            }
-
-            .glass-container {
-                padding: 1rem;
-            }
-
-            #walletAddress {
-                font-size: 0.7rem;
             }
         }
     </style>
@@ -160,33 +183,111 @@
 </head>
 <body>
     <div class="glass-container animate__animated animate__fadeInUp">
-        <h1>$BOND</h1>
-        <p>1 $BOND = 1 USDT</p>
-        <p>SUPPLY = 1,000,000,000 $BOND</p>
-        <h2>$BOND Presale:</h2>
-        <p>24 hours post-presale, tokens will be distributed to all participants.</p>
-        <p>Connect Your Ethereum Wallet Now!</p>
-        <button id="connectWalletBtn" onclick="connectWallet()">Connect wallet</button>
-        <div class="investment-buttons">
-            <button onclick="setInvestment(10000)">10 000 USDT</button>
-            <button onclick="setInvestment(50000)">50 000 USDT</button>
-            <button onclick="setInvestment(100000)">100 000 USDT</button>
-            <button onclick="setInvestment(250000)">250 000 USDT</button>
-            <button onclick="setInvestment(500000)">500 000 USDT</button>
-            <button onclick="setInvestment(1000000)">1 000 000 USDT</button>
+        <h1>BLOCKCHAINS.BOND</h1>
+        <h2>Presale Tiers</h2>
+        <p>Connect your wallet to participate in the $BOND presale.</p>
+        <button id="connectWalletBtn" onclick="connectWallet()">Connect Wallet</button>
+        <div class="tiers-grid">
+            <div class="tier-card bronze animate-on-scroll">
+                <div class="tier-header">
+                    <i class="fas fa-medal bronze"></i>
+                    <h3>Bronze Tier</h3>
+                </div>
+                <div class="tier-details">
+                    <div class="detail-item">
+                        <span>Minimum Purchase:</span>
+                        <span>10,000 USDT</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Token Allocation:</span>
+                        <span>10,500 $BOND</span> <!-- 10,000 + 5% bonus -->
+                    </div>
+                    <div class="detail-item">
+                        <span>Bonus:</span>
+                        <span>5% Extra $BOND</span>
+                    </div>
+                </div>
+                <button onclick="participate(10000)">Participate</button>
+            </div>
+
+            <div class="tier-card silver animate-on-scroll">
+                <div class="tier-header">
+                    <i class="fas fa-medal silver"></i>
+                    <h3>Silver Tier</h3>
+                </div>
+                <div class="tier-details">
+                    <div class="detail-item">
+                        <span>Minimum Purchase:</span>
+                        <span>50,000 USDT</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Token Allocation:</span>
+                        <span>55,000 $BOND</span> <!-- 50,000 + 10% bonus -->
+                    </div>
+                    <div class="detail-item">
+                        <span>Bonus:</span>
+                        <span>10% Extra $BOND</span>
+                    </div>
+                </div>
+                <button onclick="participate(50000)">Participate</button>
+            </div>
+
+            <div class="tier-card gold animate-on-scroll">
+                <div class="tier-header">
+                    <i class="fas fa-medal gold"></i>
+                    <h3>Gold Tier</h3>
+                </div>
+                <div class="tier-details">
+                    <div class="detail-item">
+                        <span>Minimum Purchase:</span>
+                        <span>100,000 USDT</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Token Allocation:</span>
+                        <span>115,000 $BOND</span> <!-- 100,000 + 15% bonus -->
+                    </div>
+                    <div class="detail-item">
+                        <span>Bonus:</span>
+                        <span>15% Extra $BOND</span>
+                    </div>
+                </div>
+                <button onclick="participate(100000)">Participate</button>
+            </div>
+
+            <div class="tier-card platinum animate-on-scroll">
+                <div class="tier-header">
+                    <i class="fas fa-medal platinum"></i>
+                    <h3>Platinum Tier</h3>
+                </div>
+                <div class="tier-details">
+                    <div class="detail-item">
+                        <span>Minimum Purchase:</span>
+                        <span>250,000 USDT</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Token Allocation:</span>
+                        <span>300,000 $BOND</span> <!-- 250,000 + 20% bonus -->
+                    </div>
+                    <div class="detail-item">
+                        <span>Bonus:</span>
+                        <span>20% Extra $BOND</span>
+                    </div>
+                </div>
+                <button onclick="participate(250000)">Participate</button>
+            </div>
         </div>
         <p id="walletAddress"></p>
         <h2>$BOND Disclaimer:</h2>
-        <p>No responsibility for incorrect transactions assumed.</p>
+        <p>No responsibility for incorrect transactions assumed. Ensure you are sending funds to the correct address.</p>
     </div>
 
     <script>
         let web3;
         let accounts;
-        let selectedAmount;
 
-        const USDT_CONTRACT_ADDRESS = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
+        const USDT_CONTRACT_ADDRESS = "0xdAC17F958D2ee523a2206206994597C13D831ec7"; // Mainnet USDT contract
         const USDT_ABI = [
+            // Minimal ABI for USDT transfer function
             {
                 constant: false,
                 inputs: [
@@ -218,35 +319,25 @@
             }
         }
 
-        function setInvestment(amount) {
-            selectedAmount = amount;
-            if (accounts && accounts.length > 0) {
-                submitInvestment();
-            } else {
+        async function participate(amount) {
+            if (!accounts || accounts.length === 0) {
                 alert("Please connect your wallet first.");
-            }
-        }
-
-        async function submitInvestment() {
-            if (!selectedAmount) {
-                alert("Please select an amount to invest.");
                 return;
             }
 
-            const walletAddress = accounts[0];
             const usdtContract = new web3.eth.Contract(USDT_ABI, USDT_CONTRACT_ADDRESS);
-            const usdtAmount = web3.utils.toHex(selectedAmount * 10 ** 6);
+            const usdtAmount = web3.utils.toHex(amount * 10 ** 6); // USDT has 6 decimals
 
             try {
                 const transaction = await usdtContract.methods
                     .transfer("YOUR_RECEIVING_WALLET_ADDRESS", usdtAmount)
-                    .send({ from: walletAddress });
+                    .send({ from: accounts[0] });
 
                 console.log(transaction);
-                alert("Investment successful!");
+                alert("Participation successful! Tokens will be allocated after the presale.");
             } catch (error) {
                 console.error(error);
-                alert("Error submitting investment. Please try again.");
+                alert("Error participating. Please try again.");
             }
         }
     </script>
