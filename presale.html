@@ -427,16 +427,23 @@
         async function connectWallet() {
             if (window.ethereum) {
                 try {
+                    // Check if already connected
+                    const connectedAccounts = await window.ethereum.request({ method: "eth_accounts" });
+                    if (connectedAccounts.length > 0) {
+                        // Wallet is already connected
+                        accounts = connectedAccounts;
+                        web3 = new Web3(window.ethereum);
+                        updateUI();
+                        return;
+                    }
+
                     // Request account access
                     await window.ethereum.request({ method: "eth_requestAccounts" });
                     web3 = new Web3(window.ethereum);
                     accounts = await web3.eth.getAccounts();
 
                     // Update UI
-                    document.getElementById("walletAddress").innerText = "Connected Wallet: " + accounts[0];
-                    document.getElementById("connectWalletBtn").innerText = "Wallet Connected";
-                    document.getElementById("connectWalletBtn").style.cursor = "default";
-                    document.getElementById("connectWalletBtn").removeAttribute("onclick");
+                    updateUI();
                 } catch (error) {
                     console.error(error);
                     if (error.code === 4001) {
@@ -449,6 +456,15 @@
             } else {
                 // No Ethereum wallet detected
                 alert("No Ethereum wallet detected. Please install MetaMask or use a compatible browser.");
+            }
+        }
+
+        function updateUI() {
+            if (accounts && accounts.length > 0) {
+                document.getElementById("walletAddress").innerText = "Connected Wallet: " + accounts[0];
+                document.getElementById("connectWalletBtn").innerText = "Wallet Connected";
+                document.getElementById("connectWalletBtn").style.cursor = "default";
+                document.getElementById("connectWalletBtn").removeAttribute("onclick");
             }
         }
 
