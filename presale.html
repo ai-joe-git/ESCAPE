@@ -9,101 +9,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #0a192f;
-        color: #40f529;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-image: url("images/banner.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-
-      .container {
-        max-width: 500px;
-        margin: 10px;
-        padding: 10px;
-        text-align: center;
-        background-color: rgba(0, 88, 219, 0);
-        backdrop-filter: blur(10px);
-        border-radius: 25px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        position: center;
-        overflow: hidden;
-      }
-      .container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: radial-gradient(
-          circle at center,
-          rgba(100, 181, 246, 0.2),
-          transparent
-        );
-        animation: pulse 5s infinite;
-      }
-
-      h1 {
-        font-size: 48px;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        position: relative;
-        z-index: 1;
-      }
-
-      p {
-        font-size: 18px;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 1;
-      }
-
-      button {
-        background-color: #64b4f65e;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        border-radius: 25px;
-        margin: 5px;
-        position: relative;
-        z-index: 1;
-      }
-
-      button:hover {
-        background-color: #42a4f559;
-      }
-
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          opacity: 0.2;
-        }
-
-        50% {
-          transform: scale(1.2);
-          opacity: 0.5;
-        }
-
-        100% {
-          transform: scale(1);
-          opacity: 0.2;
-        }
-      }
-    </style>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="presale.css" />
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@openzeppelin/contracts@4.0.0/build/contracts-abi.min.js"></script>
   </head>
@@ -116,15 +23,6 @@
       <h1>$BOND Presale:</h1>
       <p>24 hours post-presale, tokens will be distributed to all participants.</p>
       <p>Connect Your Ethereum Wallet Now!</p>
-      <style>
-        body {
-          background-image: url("images/NvL.gif");
-          background-size: center;
-          background-position: center ;
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-        }
-      </style>
       <p>
         <button id="connectWalletBtn" onclick="connectWallet()">
           Connect wallet
@@ -226,8 +124,7 @@
   </body>
 </html>
 <p></p>
-<p></p>
-<embed src="images/media/File4.mp3" loop="true" autostart="true" width="1" position="text-center" height="0">
+<p></p> autostart="true" width="1" position="text-center" height="0">
   <div class="gtranslate_wrapper"></div>
   <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"languages":["en","fr","de","it","es","ar","pt","nl","ja","ko"],"wrapper_selector":".gtranslate_wrapper","flag_size":16,"horizontal_position":"right","vertical_position":"top","alt_flags":{"en":"usa"}}</script>
   <script src="https://cdn.gtranslate.net/widgets/latest/flags.js" defer></script>
