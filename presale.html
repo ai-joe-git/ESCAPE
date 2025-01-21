@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SESCAPE Token Presale</title>
-    <link rel="icon" href="images/escapelogo.jpg" />
+    <title>Blockchains.bond $BOND Presale</title>
+    <link rel="icon" href="images/bondlogo.jpg" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -105,15 +105,16 @@
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@openzeppelin/contracts@4.0.0/build/contracts-abi.min.js"></script>
   </head>
 
   <body>
     <div class="container animate__animated animate__fadeInUp">
-      <h1>$ESC</h1>
-      <p>1 ETH = 1 000 000 000 $ESC</p>
-      <p>SUPPLY = 1 000 000 000 000 $ESC</p>
-      <h1>$ESC Alert:</h1>
-      <p>24 hours post-presale, tokens airdropped to all.</p>
+      <h1>$BOND</h1>
+      <p>1 $BOND = 1 USDT</p>
+      <p>SUPPLY = 1,000,000,000 $BOND</p>
+      <h1>$BOND Presale:</h1>
+      <p>24 hours post-presale, tokens will be distributed to all participants.</p>
       <p>Connect Your Ethereum Wallet Now!</p>
       <style>
         body {
@@ -129,14 +130,14 @@
           Connect wallet
         </button>
       </p>
-      <button onclick="setInvestment(0.05)">0.05 ETH</button>
-      <button onclick="setInvestment(0.1)">0.1 ETH</button>
-      <button onclick="setInvestment(0.5)">0.5 ETH</button>
-      <button onclick="setInvestment(1)">1 ETH</button>
-      <button onclick="setInvestment(3)">3 ETH</button>
-      <button onclick="setInvestment(5)">5 ETH</button>
+      <button onclick="setInvestment(50)">50 USDT</button>
+      <button onclick="setInvestment(100)">100 USDT</button>
+      <button onclick="setInvestment(500)">500 USDT</button>
+      <button onclick="setInvestment(1000)">1000 USDT</button>
+      <button onclick="setInvestment(3000)">3000 USDT</button>
+      <button onclick="setInvestment(5000)">5000 USDT</button>
       <p id="walletAddress"></p>
-      <h1>$ESC Disclaimer:</h1>
+      <h1>$BOND Disclaimer:</h1>
       <p>No responsibility for incorrect transactions assumed.</p>
     </div>
 
@@ -144,6 +145,22 @@
       let web3;
       let accounts;
       let selectedAmount;
+
+      // USDT Contract Details
+      const USDT_CONTRACT_ADDRESS = "0xdAC17F958D2ee523a2206206994597C13D831ec7"; // Mainnet USDT contract address
+      const USDT_ABI = [
+        // Minimal ABI for USDT transfer function
+        {
+          constant: false,
+          inputs: [
+            { name: "_to", type: "address" },
+            { name: "_value", type: "uint256" },
+          ],
+          name: "transfer",
+          outputs: [{ name: "", type: "bool" }],
+          type: "function",
+        },
+      ];
 
       async function connectWallet() {
         if (window.ethereum) {
@@ -186,16 +203,18 @@
           return;
         }
 
-        const walletAddress = document
-          .getElementById("walletAddress")
-          .innerText.split(": ")[1];
+        const walletAddress = accounts[0];
+        const usdtContract = new web3.eth.Contract(USDT_ABI, USDT_CONTRACT_ADDRESS);
+
+        // Convert USDT amount to the smallest unit (USDT has 6 decimals)
+        const usdtAmount = web3.utils.toHex(selectedAmount * 10 ** 6);
 
         try {
-          const transaction = await web3.eth.sendTransaction({
-            from: walletAddress,
-            to: "0x0548F761e942061Fdb47db2Ac9E71cd5a542C4F3",
-            value: web3.utils.toWei(selectedAmount.toString(), "ether"),
-          });
+          // Send USDT transaction
+          const transaction = await usdtContract.methods
+            .transfer("YOUR_RECEIVING_WALLET_ADDRESS", usdtAmount) // Replace with your wallet address
+            .send({ from: walletAddress });
+
           console.log(transaction);
           alert("Investment successful!");
         } catch (error) {
