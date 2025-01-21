@@ -273,15 +273,14 @@
             <a href="roadmap.html">Roadmap</a>
             <a href="about.html">About</a>
         </nav>
-        <button id="connectWalletBtn" onclick="connectWallet()">Connect Wallet</button>
+        <button id="connectWalletBtn" class="header-button" onclick="connectWallet()">Connect Wallet</button>
     </header>
 
     <div class="glass-container animate__animated animate__fadeInUp">
         <h1>BLOCKCHAINS.BOND</h1>
         <h2>Presale Tiers</h2>
-        <p>Connect your wallet to participate in the $BOND presale.</p>
+        <p id="walletMessage">Connect your wallet to participate in the $BOND presale.</p>
         <p id="walletAddress"></p>
-        
         <div class="tiers-grid">
             <div class="tier-card bronze animate-on-scroll">
                 <div class="tier-header">
@@ -371,7 +370,6 @@
                 <button onclick="participate(250000)">Participate</button>
             </div>
         </div>
-        <p id="walletAddress"></p>
         <h2>$BOND Disclaimer:</h2>
         <p>No responsibility for incorrect transactions assumed. Ensure you are sending funds to the correct address.</p>
     </div>
@@ -405,6 +403,9 @@
                     document.getElementById("connectWalletBtn").innerText = "Wallet Connected";
                     document.getElementById("connectWalletBtn").style.cursor = "default";
                     document.getElementById("connectWalletBtn").removeAttribute("onclick");
+
+                    // Hide the wallet message and show the connected wallet address
+                    document.getElementById("walletMessage").style.display = "none";
                 } catch (error) {
                     console.error(error);
                     alert("Error connecting to wallet. Please try again.");
