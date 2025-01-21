@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Viewport meta tag for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Presale Dapp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -29,7 +30,7 @@
             background: var(--gradient-bg);
             color: var(--text-color);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             overflow: auto;
@@ -43,30 +44,17 @@
             border-radius: 20px;
             border: 1px solid var(--glass-border);
             padding: 2rem;
+            width: 90%;
             max-width: 800px;
-            width: 100%;
             text-align: center;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 1rem 0;
         }
 
-        .glass-container:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin: 0 0 1rem 0;
+        h1, h2, h3 {
+            margin: 0.5rem 0;
             color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin: 0 0 1rem 0;
-            color: var(--text-color);
         }
 
         p {
@@ -136,27 +124,6 @@
         .gold { color: #ffd700; }
         .platinum { color: #e5e4e2; }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate__animated {
-            animation-duration: 1s;
-            animation-fill-mode: both;
-        }
-
-        .animate__fadeInUp {
-            animation-name: fadeIn;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -171,18 +138,21 @@
                 font-size: 0.9rem;
             }
 
-            .tiers-grid {
-                grid-template-columns: 1fr;
+            .glass-container {
+                padding: 1rem;
+                width: 95%;
             }
 
             button {
                 padding: 0.5rem 1rem;
                 font-size: 0.9rem;
             }
+
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@openzeppelin/contracts@4.0.0/build/contracts-abi.min.js"></script>
 </head>
 <body>
     <div class="background-animation"></div>
