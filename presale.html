@@ -22,7 +22,7 @@
             <a href="roadmap.html">Roadmap</a>
             <a href="about.html">About</a>
         </div>
-        <div class="mobile-menu-btn">
+        <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
@@ -172,6 +172,13 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Wallet Connection
         let web3;
         let accounts;
 
