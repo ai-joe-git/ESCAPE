@@ -36,52 +36,6 @@
             overflow: auto;
         }
 
-        /* Header Fixes */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--glass-background);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem;
-            box-shadow: var(--shadow);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            cursor: pointer;
-        }
-
-        .mobile-menu-btn span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--text-color);
-            margin: 5px 0;
-        }
-
         /* Main Content Styles */
         .glass-container {
             background: var(--glass-background);
@@ -473,18 +427,27 @@
         async function connectWallet() {
             if (window.ethereum) {
                 try {
+                    // Request account access
                     await window.ethereum.request({ method: "eth_requestAccounts" });
                     web3 = new Web3(window.ethereum);
                     accounts = await web3.eth.getAccounts();
+
+                    // Update UI
                     document.getElementById("walletAddress").innerText = "Connected Wallet: " + accounts[0];
                     document.getElementById("connectWalletBtn").innerText = "Wallet Connected";
                     document.getElementById("connectWalletBtn").style.cursor = "default";
                     document.getElementById("connectWalletBtn").removeAttribute("onclick");
                 } catch (error) {
                     console.error(error);
-                    alert("Error connecting to wallet. Please try again.");
+                    if (error.code === 4001) {
+                        // User rejected the connection request
+                        alert("Connection request rejected. Please connect your wallet to continue.");
+                    } else {
+                        alert("Error connecting to wallet. Please try again.");
+                    }
                 }
             } else {
+                // No Ethereum wallet detected
                 alert("No Ethereum wallet detected. Please install MetaMask or use a compatible browser.");
             }
         }
