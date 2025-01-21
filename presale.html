@@ -14,13 +14,14 @@
             --glass-border: rgba(255, 255, 255, 0.2);
             --text-color: #ffffff;
             --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            --gradient-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: var(--gradient-bg);
             color: var(--text-color);
             display: flex;
             justify-content: center;
@@ -36,7 +37,7 @@
             -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
             border: 1px solid var(--glass-border);
-            padding: 1.5rem;
+            padding: 2rem;
             max-width: 500px;
             width: 100%;
             text-align: center;
@@ -49,15 +50,24 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
-        h1, h2 {
+        h1 {
+            font-size: 2rem;
             margin: 0 0 1rem 0;
             color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
             font-size: 1.5rem;
+            margin: 0 0 1rem 0;
+            color: var(--text-color);
         }
 
         p {
+            font-size: 1rem;
             margin: 0.5rem 0;
-            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
         button {
@@ -65,7 +75,7 @@
             color: var(--text-color);
             border: none;
             padding: 0.75rem 1.5rem;
-            font-size: 0.9rem;
+            font-size: 1rem;
             cursor: pointer;
             border-radius: 25px;
             transition: background 0.3s ease, transform 0.3s ease;
@@ -117,17 +127,21 @@
 
         /* Responsive Design */
         @media (max-width: 480px) {
-            h1, h2 {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
                 font-size: 1.2rem;
             }
 
             p {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
 
             button {
                 padding: 0.5rem 1rem;
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
 
             .glass-container {
