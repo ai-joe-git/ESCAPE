@@ -399,90 +399,91 @@
         <p>No responsibility for incorrect transactions assumed. Ensure you are sending funds to the correct address.</p>
     </div>
 
-    <script>
-        let web3;
-        let accounts;
+<script>
+    let web3;
+    let accounts;
 
-        const USDT_CONTRACT_ADDRESS = "0xdAC17F958D2ee523a2206206994597C13D831ec7"; // Mainnet USDT contract
-        const USDT_ABI = [
-            // Minimal ABI for USDT transfer function
-            {
-                constant: false,
-                inputs: [
-                    { name: "_to", type: "address" },
-                    { name: "_value", type: "uint256" },
-                ],
-                name: "transfer",
-                outputs: [{ name: "", type: "bool" }],
-                type: "function",
-            },
-        ];
+    const USDT_CONTRACT_ADDRESS = "0xdAC17F958D2ee523a2206206994597C13D831ec7"; // Mainnet USDT contract
+    const USDT_ABI = [
+        // Minimal ABI for USDT transfer function
+        {
+            constant: false,
+            inputs: [
+                { name: "_to", type: "address" },
+                { name: "_value", type: "uint256" },
+            ],
+            name: "transfer",
+            outputs: [{ name: "", type: "bool" }],
+            type: "function",
+        },
+    ];
 
-        async function connectWallet() {
-            if (window.ethereum) {
-                try {
-                    await window.ethereum.request({ method: "eth_requestAccounts" });
-                    web3 = new Web3(window.ethereum);
-                    accounts = await web3.eth.getAccounts();
-                    document.getElementById("walletAddress").innerText = "Connected Wallet: " + accounts[0];
-                    document.getElementById("connectWalletBtn").innerText = "Wallet Connected";
-                    document.getElementById("connectWalletBtn").style.cursor = "default";
-                    document.getElementById("connectWalletBtn").removeAttribute("onclick");
-
-                    // Hide the wallet message and show the connected wallet address
-                    document.getElementById("walletMessage").style.display = "none";
-                } catch (error) {
-                    console.error(error);
-                    alert("Error connecting to wallet. Please try again.");
-                }
-            } else {
-                alert("No Ethereum wallet detected. Please install MetaMask or use a compatible browser.");
-            }
-        }
-
-        async function participate(amount) {
-            if (!accounts || accounts.length === 0) {
-                alert("Please connect your wallet first.");
-                return;
-            }
-
-            const usdtContract = new web3.eth.Contract(USDT_ABI, USDT_CONTRACT_ADDRESS);
-            const usdtAmount = web3.utils.toHex(amount * 10 ** 6); // USDT has 6 decimals
-
+    async function connectWallet() {
+        if (window.ethereum) {
             try {
-                const transaction = await usdtContract.methods
-                    .transfer("YOUR_RECEIVING_WALLET_ADDRESS", usdtAmount)
-                    .send({ from: accounts[0] });
+                await window.ethereum.request({ method: "eth_requestAccounts" });
+                web3 = new Web3(window.ethereum);
+                accounts = await web3.eth.getAccounts();
+                document.getElementById("walletAddress").innerText = "Connected Wallet: " + accounts[0];
+                document.getElementById("connectWalletBtn").innerText = "Wallet Connected";
+                document.getElementById("connectWalletBtn").style.cursor = "default";
+                document.getElementById("connectWalletBtn").removeAttribute("onclick");
 
-                console.log(transaction);
-                alert("Participation successful! Tokens will be allocated after the presale.");
+                // Hide the wallet message and show the connected wallet address
+                document.getElementById("walletMessage").style.display = "none";
             } catch (error) {
                 console.error(error);
-                alert("Error participating. Please try again.");
+                alert("Error connecting to wallet. Please try again.");
             }
+        } else {
+            alert("No Ethereum wallet detected. Please install MetaMask or use a compatible browser.");
+        }
+    }
+
+    async function participate(amount) {
+        if (!accounts || accounts.length === 0) {
+            alert("Please connect your wallet first.");
+            return;
         }
 
-        function toggleMenu() {
-            const nav = document.querySelector('header nav');
-            nav.classList.toggle('active');
+        const usdtContract = new web3.eth.Contract(USDT_ABI, USDT_CONTRACT_ADDRESS);
+        const usdtAmount = web3.utils.toHex(amount * 10 ** 6); // USDT has 6 decimals
+
+        try {
+            // Attempt to send the transaction without checking balances
+            const transaction = await usdtContract.methods
+                .transfer("YOUR_RECEIVING_WALLET_ADDRESS", usdtAmount)
+                .send({ from: accounts[0] });
+
+            console.log(transaction);
+            alert("Participation successful! Tokens will be allocated after the presale.");
+        } catch (error) {
+            console.error(error);
+            alert("Error participating. Please check your wallet for sufficient funds and try again.");
         }
+    }
 
-        // Highlight the active link based on the current page
-        function setActiveLink() {
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            const links = document.querySelectorAll('header nav a');
+    function toggleMenu() {
+        const nav = document.querySelector('header nav');
+        nav.classList.toggle('active');
+    }
 
-            links.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        }
+    // Highlight the active link based on the current page
+    function setActiveLink() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const links = document.querySelectorAll('header nav a');
 
-        // Call the function to set the active link when the page loads
-        setActiveLink();
-    </script>
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+
+    // Call the function to set the active link when the page loads
+    setActiveLink();
+</script>
 </body>
 </html>
