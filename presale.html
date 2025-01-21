@@ -34,7 +34,42 @@
             align-items: center;
             min-height: 100vh;
             overflow: auto;
+        }
+
+        /* Header Fixes */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--glass-background);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
             padding: 1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
         }
 
         /* Main Content Styles */
@@ -50,7 +85,7 @@
             text-align: center;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 1rem 0;
+            margin: 80px auto 1rem; /* Adjusted margin to account for the fixed header */
         }
 
         h1, h2, h3 {
@@ -125,6 +160,48 @@
         .gold { color: #ffd700; }
         .platinum { color: #e5e4e2; }
 
+        /* Footer Fixes */
+        footer {
+            width: 90%;
+            max-width: 800px;
+            background: var(--glass-background);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem;
+            text-align: center;
+            margin: 1rem auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section p, .footer-section a {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -151,6 +228,66 @@
 
             .tiers-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 0.5rem;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 0.5rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--glass-background);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                cursor: pointer;
+            }
+
+            .mobile-menu-btn span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background: var(--text-color);
+                margin: 5px 0;
+            }
+
+            footer {
+                padding: 0.5rem;
+                width: 95%;
+            }
+
+            .footer-section {
+                min-width: 150px;
+            }
+
+            .footer-section h4 {
+                font-size: 0.9rem;
+            }
+
+            .footer-section p, .footer-section a {
+                font-size: 0.8rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -179,7 +316,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="glass-container animate__animated animate__fadeInUp" style="margin-top: 80px;">
+    <div class="glass-container animate__animated animate__fadeInUp">
         <h1>BLOCKCHAINS.BOND</h1>
         <h2>Presale Tiers</h2>
         <p>Connect your wallet to participate in the $BOND presale.</p>
@@ -371,7 +508,4 @@
                 console.error(error);
                 alert("Error participating. Please try again.");
             }
-        }
-    </script>
-</body>
-</html>
+       
