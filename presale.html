@@ -266,12 +266,12 @@
     <header>
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav>
-            <a href="#" onclick="setActive(this)">Home</a>
-            <a href="#" onclick="setActive(this)">Tokenomics</a>
-            <a href="#" onclick="setActive(this)">Technology</a>
-            <a href="#" onclick="setActive(this)">Staking</a>
-            <a href="#" onclick="setActive(this)">Roadmap</a>
-            <a href="#" onclick="setActive(this)">About</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="tokenomics.html">Tokenomics</a>
+            <a href="technology.html">Technology</a>
+            <a href="staking.html">Staking</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="about.html">About</a>
         </nav>
         <button class="header-button">View Tokenomics</button>
     </header>
@@ -440,14 +440,22 @@
             nav.classList.toggle('active');
         }
 
-        function setActive(link) {
-            // Remove active class from all links
+        // Highlight the active link based on the current page
+        function setActiveLink() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             const links = document.querySelectorAll('header nav a');
-            links.forEach(l => l.classList.remove('active'));
 
-            // Add active class to the clicked link
-            link.classList.add('active');
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
         }
+
+        // Call the function to set the active link when the page loads
+        setActiveLink();
     </script>
 </body>
 </html>
