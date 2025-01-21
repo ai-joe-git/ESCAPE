@@ -26,11 +26,60 @@
             background: var(--gradient-bg);
             color: var(--text-color);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             overflow: auto;
             padding: 1rem;
+        }
+
+        header {
+            width: 100%;
+            background: var(--glass-background);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        header nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        header nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: var(--primary-color);
+        }
+
+        header .header-button {
+            background: var(--button-gradient);
+            color: var(--text-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        header .header-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
         }
 
         .glass-container {
@@ -176,12 +225,40 @@
                 padding: 0.5rem 1rem;
                 font-size: 0.9rem;
             }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header nav {
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            header .header-button {
+                width: 100%;
+                max-width: none;
+            }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@openzeppelin/contracts@4.0.0/build/contracts-abi.min.js"></script>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Tokenomics</a>
+            <a href="#">Technology</a>
+            <a href="#">Staking</a>
+            <a href="#">Roadmap</a>
+            <a href="#">About</a>
+        </nav>
+        <button class="header-button">View Tokenomics</button>
+    </header>
+
     <div class="glass-container animate__animated animate__fadeInUp">
         <h1>BLOCKCHAINS.BOND</h1>
         <h2>Presale Tiers</h2>
