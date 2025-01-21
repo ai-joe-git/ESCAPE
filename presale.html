@@ -47,6 +47,7 @@
             align-items: center;
             margin-bottom: 2rem;
             box-shadow: var(--shadow);
+            position: relative; /* Added for positioning the Connect Wallet button */
         }
 
         header nav {
@@ -90,7 +91,6 @@
         }
 
         .connect-wallet-btn {
-            display: none; /* Hidden by default on mobile */
             background: var(--button-gradient);
             color: var(--text-color);
             border: none;
@@ -252,8 +252,8 @@
             }
 
             header {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
             }
 
             header nav {
@@ -277,10 +277,8 @@
             }
 
             .connect-wallet-btn {
-                display: block; /* Show on mobile */
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
+                position: static; /* Reset position */
+                margin-left: auto; /* Push to the right */
                 padding: 0.5rem 1rem;
                 font-size: 0.9rem;
             }
