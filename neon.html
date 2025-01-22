@@ -52,14 +52,14 @@
     <div class="animated-grid absolute inset-0 opacity-20"></div>
 
     <!-- Glassmorphism Container -->
-    <div class="relative max-w-4xl mx-auto p-8 glass rounded-3xl shadow-2xl mt-20">
-      <h1 class="text-5xl font-bold text-center mb-8 neon-text">Neon Token DApp</h1>
+    <div class="relative max-w-4xl mx-auto p-4 md:p-8 glass rounded-3xl shadow-2xl mt-10 md:mt-20">
+      <h1 class="text-3xl md:text-5xl font-bold text-center mb-6 md:mb-8 neon-text">Neon Token DApp</h1>
 
       <!-- Wallet Connection -->
       <div id="wallet-section">
         <button
           id="connect-wallet"
-          class="w-full py-3 neon-button rounded-lg text-white font-bold text-lg"
+          class="w-full py-2 md:py-3 neon-button rounded-lg text-white font-bold text-md md:text-lg"
         >
           Connect Wallet
         </button>
@@ -67,16 +67,16 @@
 
       <!-- Buy Tokens Section -->
       <div id="buy-section" class="hidden space-y-4">
-        <h2 class="text-2xl font-semibold">Buy Tokens</h2>
+        <h2 class="text-xl md:text-2xl font-semibold">Buy Tokens</h2>
         <input
           id="eth-amount"
           type="number"
           placeholder="ETH Amount"
-          class="w-full p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-neonPurple"
+          class="w-full p-2 md:p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-neonPurple"
         />
         <button
           id="buy-tokens"
-          class="w-full py-3 neon-button rounded-lg text-white font-bold text-lg"
+          class="w-full py-2 md:py-3 neon-button rounded-lg text-white font-bold text-md md:text-lg"
         >
           Buy Tokens
         </button>
@@ -84,16 +84,16 @@
 
       <!-- Sell Tokens Section -->
       <div id="sell-section" class="hidden space-y-4">
-        <h2 class="text-2xl font-semibold">Sell Tokens</h2>
+        <h2 class="text-xl md:text-2xl font-semibold">Sell Tokens</h2>
         <input
           id="token-amount"
           type="number"
           placeholder="Token Amount"
-          class="w-full p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-neonBlue"
+          class="w-full p-2 md:p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-neonBlue"
         />
         <button
           id="sell-tokens"
-          class="w-full py-3 neon-button rounded-lg text-white font-bold text-lg"
+          class="w-full py-2 md:py-3 neon-button rounded-lg text-white font-bold text-md md:text-lg"
         >
           Sell Tokens
         </button>
@@ -110,14 +110,19 @@
       // Connect Wallet
       document.getElementById("connect-wallet").addEventListener("click", async () => {
         if (window.ethereum) {
-          provider = new ethers.providers.Web3Provider(window.ethereum);
-          await provider.send("eth_requestAccounts", []);
-          signer = provider.getSigner();
-          contract = new ethers.Contract(contractAddress, contractABI, signer);
+          try {
+            provider = new ethers.providers.Web3Provider(window.ethereum);
+            await provider.send("eth_requestAccounts", []);
+            signer = provider.getSigner();
+            contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-          document.getElementById("wallet-section").classList.add("hidden");
-          document.getElementById("buy-section").classList.remove("hidden");
-          document.getElementById("sell-section").classList.remove("hidden");
+            document.getElementById("wallet-section").classList.add("hidden");
+            document.getElementById("buy-section").classList.remove("hidden");
+            document.getElementById("sell-section").classList.remove("hidden");
+          } catch (error) {
+            console.error("Error connecting to MetaMask:", error);
+            alert("Failed to connect to MetaMask. Please try again.");
+          }
         } else {
           alert("Please install MetaMask!");
         }
@@ -128,9 +133,14 @@
         const ethAmount = document.getElementById("eth-amount").value;
         if (!ethAmount) return alert("Please enter an ETH amount");
 
-        const tx = await contract.buyTokens({ value: ethers.utils.parseEther(ethAmount) });
-        await tx.wait();
-        alert("Tokens purchased successfully!");
+        try {
+          const tx = await contract.buyTokens({ value: ethers.utils.parseEther(ethAmount) });
+          await tx.wait();
+          alert("Tokens purchased successfully!");
+        } catch (error) {
+          console.error("Error buying tokens:", error);
+          alert("Failed to buy tokens. Please try again.");
+        }
       });
 
       // Sell Tokens
@@ -138,9 +148,14 @@
         const tokenAmount = document.getElementById("token-amount").value;
         if (!tokenAmount) return alert("Please enter a token amount");
 
-        const tx = await contract.sellTokens(ethers.utils.parseEther(tokenAmount));
-        await tx.wait();
-        alert("Tokens sold successfully!");
+        try {
+          const tx = await contract.sellTokens(ethers.utils.parseEther(tokenAmount));
+          await tx.wait();
+          alert("Tokens sold successfully!");
+        } catch (error) {
+          console.error("Error selling tokens:", error);
+          alert("Failed to sell tokens. Please try again.");
+        }
       });
     </script>
   </body>
