@@ -101,24 +101,17 @@
     </div>
 
     <script>
-      // Replace with your contract address and ABI
-      const contractAddress = "YOUR_CONTRACT_ADDRESS";
-      const contractABI = []; // Replace with your contract ABI
+      // Show the DApp content even if no wallet is connected
+      document.getElementById("buy-section").classList.remove("hidden");
+      document.getElementById("sell-section").classList.remove("hidden");
 
-      let provider, signer, contract;
-
-      // Connect Wallet
+      // Connect Wallet (Optional)
       document.getElementById("connect-wallet").addEventListener("click", async () => {
         if (window.ethereum) {
           try {
-            provider = new ethers.providers.Web3Provider(window.ethereum);
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
             await provider.send("eth_requestAccounts", []);
-            signer = provider.getSigner();
-            contract = new ethers.Contract(contractAddress, contractABI, signer);
-
-            document.getElementById("wallet-section").classList.add("hidden");
-            document.getElementById("buy-section").classList.remove("hidden");
-            document.getElementById("sell-section").classList.remove("hidden");
+            alert("Wallet connected successfully!");
           } catch (error) {
             console.error("Error connecting to MetaMask:", error);
             alert("Failed to connect to MetaMask. Please try again.");
@@ -128,34 +121,14 @@
         }
       });
 
-      // Buy Tokens
-      document.getElementById("buy-tokens").addEventListener("click", async () => {
-        const ethAmount = document.getElementById("eth-amount").value;
-        if (!ethAmount) return alert("Please enter an ETH amount");
-
-        try {
-          const tx = await contract.buyTokens({ value: ethers.utils.parseEther(ethAmount) });
-          await tx.wait();
-          alert("Tokens purchased successfully!");
-        } catch (error) {
-          console.error("Error buying tokens:", error);
-          alert("Failed to buy tokens. Please try again.");
-        }
+      // Buy Tokens (Demo Only)
+      document.getElementById("buy-tokens").addEventListener("click", () => {
+        alert("This is a demo. Connect a wallet and set up the contract to enable this feature.");
       });
 
-      // Sell Tokens
-      document.getElementById("sell-tokens").addEventListener("click", async () => {
-        const tokenAmount = document.getElementById("token-amount").value;
-        if (!tokenAmount) return alert("Please enter a token amount");
-
-        try {
-          const tx = await contract.sellTokens(ethers.utils.parseEther(tokenAmount));
-          await tx.wait();
-          alert("Tokens sold successfully!");
-        } catch (error) {
-          console.error("Error selling tokens:", error);
-          alert("Failed to sell tokens. Please try again.");
-        }
+      // Sell Tokens (Demo Only)
+      document.getElementById("sell-tokens").addEventListener("click", () => {
+        alert("This is a demo. Connect a wallet and set up the contract to enable this feature.");
       });
     </script>
   </body>
