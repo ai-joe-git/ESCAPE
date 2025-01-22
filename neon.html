@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Token DApp</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ethers.js CDN -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+    <style>
+      /* Custom Glassmorphism and Neon Effects */
+      .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .neon-text {
+        background: linear-gradient(45deg, #a855f7, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .neon-button {
+        background: linear-gradient(45deg, #a855f7, #3b82f6);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .neon-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), 0 0 30px rgba(59, 130, 246, 0.6);
+      }
+      /* Animated Neon Grid Background */
+      @keyframes moveGrid {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 100px 100px;
+        }
+      }
+      .animated-grid {
+        background: radial-gradient(circle, transparent 20%, #000 20%, #000 80%, transparent 80%, transparent),
+          radial-gradient(circle, transparent 20%, #000 20%, #000 80%, transparent 80%, transparent) 50px 50px,
+          linear-gradient(#a855f7 2px, transparent 2px) 0 -1px,
+          linear-gradient(90deg, #a855f7 2px, transparent 2px) -1px 0;
+        background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+        animation: moveGrid 4s linear infinite;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <!-- Animated Neon Grid Background -->
+    <div class="animated-grid absolute inset-0 opacity-20"></div>
+
+    <!-- Glassmorphism Container -->
+    <div class="relative max-w-4xl mx-auto p-8 glass rounded-3xl shadow-2xl mt-20">
+      <h1 class="text-5xl font-bold text-center mb-8 neon-text">Neon Token DApp</h1>
+
+      <!-- Wallet Connection -->
+      <div id="wallet-section">
+        <button
+          id="connect-wallet"
+          class="w-full py-3 neon-button rounded-lg text-white font-bold text-lg"
+        >
+          Connect Wallet
+        </button>
+      </div>
+
+      <!-- Buy Tokens Section -->
+      <div id="buy-section" class="hidden space-y-4">
+        <h2 class="text-2xl font-semibold">Buy Tokens</h2>
+        <input
+          id="eth-amount"
+          type="number"
+          placeholder="ETH Amount"
+          class="w-full p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-neonPurple"
+        />
+        <button
+          id="buy-tokens"
+          class="w-full py-3 neon-button rounded-lg text-white font-bold text-lg"
+        >
+          Buy Tokens
+        </button>
+      </div>
+
+      <!-- Sell Tokens Section -->
+      <div id="sell-section" class="hidden space-y-4">
+        <h2 class="text-2xl font-semibold">Sell Tokens</h2>
+        <input
+          id="token-amount"
+          type="number"
+          placeholder="Token Amount"
+          class="w-full p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-neonBlue"
+        />
+        <button
+          id="sell-tokens"
+          class="w-full py-3 neon-button rounded-lg text-white font-bold text-lg"
+        >
+          Sell Tokens
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Replace with your contract address and ABI
+      const contractAddress = "YOUR_CONTRACT_ADDRESS";
+      const contractABI = []; // Replace with your contract ABI
+
+      let provider, signer, contract;
+
+      // Connect Wallet
+      document.getElementById("connect-wallet").addEventListener("click", async () => {
+        if (window.ethereum) {
+          provider = new ethers.providers.Web3Provider(window.ethereum);
+          await provider.send("eth_requestAccounts", []);
+          signer = provider.getSigner();
+          contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+          document.getElementById("wallet-section").classList.add("hidden");
+          document.getElementById("buy-section").classList.remove("hidden");
+          document.getElementById("sell-section").classList.remove("hidden");
+        } else {
+          alert("Please install MetaMask!");
+        }
+      });
+
+      // Buy Tokens
+      document.getElementById("buy-tokens").addEventListener("click", async () => {
+        const ethAmount = document.getElementById("eth-amount").value;
+        if (!ethAmount) return alert("Please enter an ETH amount");
+
+        const tx = await contract.buyTokens({ value: ethers.utils.parseEther(ethAmount) });
+        await tx.wait();
+        alert("Tokens purchased successfully!");
+      });
+
+      // Sell Tokens
+      document.getElementById("sell-tokens").addEventListener("click", async () => {
+        const tokenAmount = document.getElementById("token-amount").value;
+        if (!tokenAmount) return alert("Please enter a token amount");
+
+        const tx = await contract.sellTokens(ethers.utils.parseEther(tokenAmount));
+        await tx.wait();
+        alert("Tokens sold successfully!");
+      });
+    </script>
+  </body>
+</html>
