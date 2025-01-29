@@ -199,6 +199,8 @@
       // Mock Data
       let liquidityInUSD = 0;
       let holderCount = 0;
+      const holders = new Set(); // Track unique holders
+      const transactions = []; // Track all transactions
 
       // DOM Elements
       const progressBar = document.getElementById("progress-bar");
@@ -245,20 +247,6 @@
         },
       });
 
-      // Simulate real-time price updates
-      let time = 0;
-      setInterval(() => {
-        time += 1;
-        const price = Math.sin(time * 0.1) * 0.1 + 0.1; // Mock price fluctuation
-        chart.data.labels.push(`T+${time}`);
-        chart.data.datasets[0].data.push(price);
-        if (chart.data.labels.length > 20) {
-          chart.data.labels.shift();
-          chart.data.datasets[0].data.shift();
-        }
-        chart.update();
-      }, 1000);
-
       // Function to update progress bar
       function updateProgress() {
         const progress = (liquidityInUSD / 100000) * 100;
@@ -294,6 +282,23 @@
         }
       }
 
+      // Function to update the price chart based on transactions
+      function updateChart(ethAmount, type) {
+        const priceImpact = type === "buy" ? ethAmount * 0.0001 : -ethAmount * 0.0001; // Simulate price impact
+        const lastPrice = chart.data.datasets[0].data.length > 0 ? chart.data.datasets[0].data.slice(-1)[0] : 0.1;
+        const newPrice = lastPrice + priceImpact;
+
+        chart.data.labels.push(new Date().toLocaleTimeString());
+        chart.data.datasets[0].data.push(newPrice);
+
+        if (chart.data.labels.length > 20) {
+          chart.data.labels.shift();
+          chart.data.datasets[0].data.shift();
+        }
+
+        chart.update();
+      }
+
       // Function to trigger confetti
       function triggerConfetti() {
         const canvas = document.getElementById("confetti-canvas");
@@ -306,23 +311,24 @@
         });
       }
 
-      // Mock real-time updates
+      // Simulate real-time transactions
       setInterval(() => {
-        // Simulate liquidity increase
-        liquidityInUSD += Math.random() * 1000;
-        updateProgress();
-
-        // Simulate holder count increase
-        holderCount += Math.floor(Math.random() * 5);
-        holderCountElement.textContent = holderCount.toLocaleString();
-
-        // Simulate transactions
+        // Simulate a random transaction
         const type = Math.random() > 0.5 ? "buy" : "sell";
         const address = `0x${Math.random().toString(16).slice(2, 10)}...${Math.random().toString(16).slice(-4)}`;
         const tokenAmount = (Math.random() * 1000).toFixed(2);
         const ethAmount = (Math.random() * 1).toFixed(4);
 
+        // Update liquidity and holder count
+        liquidityInUSD += parseFloat(ethAmount) * 3000; // Assume 1 ETH = $3000
+        holders.add(address); // Add to unique holders
+        holderCount = holders.size;
+
+        // Update UI
+        updateProgress();
+        holderCountElement.textContent = holderCount.toLocaleString();
         addTransaction(type, address, tokenAmount, ethAmount);
+        updateChart(parseFloat(ethAmount), type);
       }, 3000);
 
       // Buy Tokens (Demo Only)
