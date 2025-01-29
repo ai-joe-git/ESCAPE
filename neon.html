@@ -10,6 +10,8 @@
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
       /* Custom Glassmorphism and Neon Effects */
       .glass {
@@ -47,6 +49,66 @@
         background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
         animation: moveGrid 4s linear infinite;
       }
+      /* Progress Bar Glow */
+      #progress-bar {
+        box-shadow: 0 0 10px rgba(168, 85, 247, 0.6), 0 0 20px rgba(59, 130, 246, 0.6);
+        animation: glow 2s infinite alternate;
+      }
+      @keyframes glow {
+        0% {
+          box-shadow: 0 0 10px rgba(168, 85, 247, 0.6), 0 0 20px rgba(59, 130, 246, 0.6);
+        }
+        100% {
+          box-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(59, 130, 246, 0.8);
+        }
+      }
+      /* Transactions Feed Scrollbar */
+      #transactions-feed {
+        scrollbar-width: thin;
+        scrollbar-color: #a855f7 #2d2d2d;
+      }
+      #transactions-feed::-webkit-scrollbar {
+        width: 8px;
+      }
+      #transactions-feed::-webkit-scrollbar-track {
+        background: #2d2d2d;
+      }
+      #transactions-feed::-webkit-scrollbar-thumb {
+        background: #a855f7;
+        border-radius: 4px;
+      }
+      /* Transaction Item Animation */
+      .transaction-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* Holder Count Pulse Animation */
+      #holder-count {
+        animation: pulse 2s infinite alternate;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          text-shadow: 0 0 10px rgba(168, 85, 247, 0.6), 0 0 20px rgba(59, 130, 246, 0.6);
+        }
+        100% {
+          transform: scale(1.05);
+          text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(59, 130, 246, 0.8);
+        }
+      }
     </style>
   </head>
   <body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
@@ -62,24 +124,37 @@
         <canvas id="priceChart" class="w-full h-64"></canvas>
       </div>
 
-      <!-- Wallet Connection -->
-      <div id="wallet-section">
-        <button
-          id="connect-wallet"
-          class="w-full py-2 md:py-3 neon-button rounded-lg text-white font-bold text-md md:text-lg"
-        >
-          Connect Wallet
-        </button>
+      <!-- Progress Bar -->
+      <div class="mb-6">
+        <h2 class="text-xl md:text-2xl font-semibold neon-text">Progress to Raydium Listing</h2>
+        <div class="w-full h-4 bg-gray-800 rounded-full mt-2">
+          <div id="progress-bar" class="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full transition-all duration-500"></div>
+        </div>
+        <p id="progress-text" class="text-sm mt-2 neon-text">$0 / $100,000</p>
+      </div>
+
+      <!-- Holder Count -->
+      <div class="glass p-4 rounded-2xl mb-6">
+        <h2 class="text-xl md:text-2xl font-semibold neon-text mb-4">Token Holders</h2>
+        <div id="holder-count" class="text-4xl md:text-6xl font-bold neon-text">0</div>
+      </div>
+
+      <!-- Live Transactions Feed -->
+      <div class="glass p-4 rounded-2xl mb-6">
+        <h2 class="text-xl md:text-2xl font-semibold neon-text mb-4">Live Transactions</h2>
+        <div id="transactions-feed" class="space-y-2 max-h-64 overflow-y-auto">
+          <!-- Transactions will be dynamically added here -->
+        </div>
       </div>
 
       <!-- Buy Tokens Section -->
-      <div id="buy-section" class="hidden space-y-4">
+      <div id="buy-section" class="space-y-4">
         <h2 class="text-xl md:text-2xl font-semibold">Buy Tokens</h2>
         <input
           id="eth-amount"
           type="number"
           placeholder="ETH Amount"
-          class="w-full p-2 md:p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-neonPurple"
+          class="w-full p-2 md:p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
         <button
           id="buy-tokens"
@@ -90,13 +165,13 @@
       </div>
 
       <!-- Sell Tokens Section -->
-      <div id="sell-section" class="hidden space-y-4">
+      <div id="sell-section" class="space-y-4 mt-6">
         <h2 class="text-xl md:text-2xl font-semibold">Sell Tokens</h2>
         <input
           id="token-amount"
           type="number"
           placeholder="Token Amount"
-          class="w-full p-2 md:p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-neonBlue"
+          class="w-full p-2 md:p-3 glass rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
           id="sell-tokens"
@@ -105,14 +180,33 @@
           Sell Tokens
         </button>
       </div>
+
+      <!-- Wallet Connection -->
+      <div id="wallet-section" class="mt-6">
+        <button
+          id="connect-wallet"
+          class="w-full py-2 md:py-3 neon-button rounded-lg text-white font-bold text-md md:text-lg"
+        >
+          Connect Wallet
+        </button>
+      </div>
     </div>
 
-    <script>
-      // Show the DApp content even if no wallet is connected
-      document.getElementById("buy-section").classList.remove("hidden");
-      document.getElementById("sell-section").classList.remove("hidden");
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
 
-      // Mock Price Chart
+    <script>
+      // Mock Data
+      let liquidityInUSD = 0;
+      let holderCount = 0;
+
+      // DOM Elements
+      const progressBar = document.getElementById("progress-bar");
+      const progressText = document.getElementById("progress-text");
+      const holderCountElement = document.getElementById("holder-count");
+      const transactionsFeed = document.getElementById("transactions-feed");
+
+      // Initialize Price Chart
       const ctx = document.getElementById("priceChart").getContext("2d");
       const chart = new Chart(ctx, {
         type: "line",
@@ -165,6 +259,82 @@
         chart.update();
       }, 1000);
 
+      // Function to update progress bar
+      function updateProgress() {
+        const progress = (liquidityInUSD / 100000) * 100;
+        progressBar.style.width = `${progress}%`;
+        progressText.textContent = `$${liquidityInUSD.toLocaleString()} / $100,000`;
+
+        if (liquidityInUSD >= 100000) {
+          progressBar.classList.add("bg-green-500");
+          progressText.innerHTML = "Threshold reached! Listing on Raydium...";
+          triggerConfetti();
+        }
+      }
+
+      // Function to add a transaction to the feed
+      function addTransaction(type, address, tokenAmount, ethAmount) {
+        const transactionItem = document.createElement("div");
+        transactionItem.classList.add("transaction-item");
+
+        const addressShort = `${address.slice(0, 6)}...${address.slice(-4)}`;
+        const transactionText = `
+          <span class="font-semibold">${type === "buy" ? "🟢 Buy" : "🔴 Sell"}</span>
+          <span class="text-gray-400">${addressShort}</span>
+          <span class="text-purple-500">${tokenAmount} NEON</span>
+          <span class="text-blue-500">(${ethAmount} ETH)</span>
+        `;
+
+        transactionItem.innerHTML = transactionText;
+        transactionsFeed.prepend(transactionItem);
+
+        // Limit the feed to 10 transactions
+        if (transactionsFeed.children.length > 10) {
+          transactionsFeed.removeChild(transactionsFeed.lastChild);
+        }
+      }
+
+      // Function to trigger confetti
+      function triggerConfetti() {
+        const canvas = document.getElementById("confetti-canvas");
+        const confetti = confetti.create(canvas, { resize: true, useWorker: true });
+
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      }
+
+      // Mock real-time updates
+      setInterval(() => {
+        // Simulate liquidity increase
+        liquidityInUSD += Math.random() * 1000;
+        updateProgress();
+
+        // Simulate holder count increase
+        holderCount += Math.floor(Math.random() * 5);
+        holderCountElement.textContent = holderCount.toLocaleString();
+
+        // Simulate transactions
+        const type = Math.random() > 0.5 ? "buy" : "sell";
+        const address = `0x${Math.random().toString(16).slice(2, 10)}...${Math.random().toString(16).slice(-4)}`;
+        const tokenAmount = (Math.random() * 1000).toFixed(2);
+        const ethAmount = (Math.random() * 1).toFixed(4);
+
+        addTransaction(type, address, tokenAmount, ethAmount);
+      }, 3000);
+
+      // Buy Tokens (Demo Only)
+      document.getElementById("buy-tokens").addEventListener("click", () => {
+        alert("This is a demo. Connect a wallet and set up the contract to enable this feature.");
+      });
+
+      // Sell Tokens (Demo Only)
+      document.getElementById("sell-tokens").addEventListener("click", () => {
+        alert("This is a demo. Connect a wallet and set up the contract to enable this feature.");
+      });
+
       // Connect Wallet (Optional)
       document.getElementById("connect-wallet").addEventListener("click", async () => {
         if (window.ethereum) {
@@ -179,16 +349,6 @@
         } else {
           alert("Please install MetaMask!");
         }
-      });
-
-      // Buy Tokens (Demo Only)
-      document.getElementById("buy-tokens").addEventListener("click", () => {
-        alert("This is a demo. Connect a wallet and set up the contract to enable this feature.");
-      });
-
-      // Sell Tokens (Demo Only)
-      document.getElementById("sell-tokens").addEventListener("click", () => {
-        alert("This is a demo. Connect a wallet and set up the contract to enable this feature.");
       });
     </script>
   </body>
