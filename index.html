@@ -3,119 +3,1188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLOCKCHAINS.BOND - Revolutionary Digital Finance Protocol</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Blockchains.Bond - Official State Bond Tokenization Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: #dc2626;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #1e3a8a;
+        }
+
+        .nav-links a.presale-link {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.presale-link:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #60a5fa;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blockchain-visual {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            animation: rotate 20s linear infinite;
+        }
+
+        .chain-link {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(96, 165, 250, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #3b82f6;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* Presale Section */
+        .presale {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #dc2626 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .presale::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.03)" points="0,1000 1000,700 1000,0 0,300"/></svg>');
+            background-size: cover;
+        }
+
+        .presale-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .presale-info h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .presale-info .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .presale-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .highlight-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .presale-benefits {
+            margin: 2rem 0;
+        }
+
+        .presale-benefits h4 {
+            margin-bottom: 1rem;
+            color: #60a5fa;
+            font-size: 1.2rem;
+        }
+
+        .presale-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .presale-benefits li {
+            margin-bottom: 0.8rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .presale-benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .presale-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .token-visual {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+            position: relative;
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        .token-visual::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(96, 165, 250, 0.3);
+            animation: ripple 2s linear infinite;
+        }
+
+        .token-icon {
+            font-size: 6rem;
+            color: #60a5fa;
+            z-index: 2;
+        }
+
+        .countdown-display {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .countdown-time {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .presale-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .presale-button {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .presale-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        .presale-button.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .presale-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-card:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: calc(50% + 40px);
+            width: calc(100% - 80px);
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #3b82f6);
+            z-index: 1;
+        }
+
+        /* Partnership Section */
+        .partnerships {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3a8a, #0f172a);
+            color: white;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .partner-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .partner-flag {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #60a5fa;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #60a5fa;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content,
+            .presale-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1,
+            .presale-info h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats,
+            .presale-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-card:not(:last-child)::after {
+                display: none;
+            }
+
+            .presale-cta {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="background-animation"></div>
-    
-    <nav class="navbar">
-        <div class="nav-logo">
-            <span>BLOCKCHAINS.BOND</span>
-        </div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="tokenomics.html">Tokenomics</a>
-            <a href="technology.html">Technology</a>
-            <a href="staking.html">Staking</a>
-            <a href="roadmap.html">Roadmap</a>
-            <a href="about.html">About</a>
-        </div>
-        <div class="mobile-menu-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="glass-container">
-            <h1 class="animate-text">The Future of Digital Finance</h1>
-            <p class="animate-text-delay">Pioneering the next evolution in digital finance with the first truly integrated, multi-chain bond and financial instruments protocol.</p>
-            <div class="cta-buttons">
-                <a href="presale.html" class="primary-btn">$BOND Presale</a>
-                <a href="tokenomics.html" class="secondary-btn">View Tokenomics</a>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-link"></i>
+                Blockchains.Bond
             </div>
-        </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#presale">Presale</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#partnerships">Partnerships</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="presale.html" class="presale-link"><i class="fas fa-fire"></i> Join Presale</a></li>
+            </ul>
+            <a href="presale.html" class="cta-button">Invest Now</a>
+        </nav>
     </header>
 
-    <main>
-        <section id="market-opportunity" class="glass-section">
-            <div class="section-content">
-                <h2>Market Opportunity</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>$100T</h3>
-                        <p>Global Bond Market</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Official State Bond Tokenization Platform</h1>
+                    <p class="subtitle">Democratizing state bond investments through blockchain technology with official government partnerships worldwide</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Government Partners</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">$2.5B</div>
+                            <div class="stat-label">Bonds Tokenized</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Transparency Rate</div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h3>$50B</h3>
-                        <p>DeFi Market</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>$1.5T</h3>
-                        <p>Institutional Crypto Market</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>$5T</h3>
-                        <p>Potential Market by 2025</p>
-                    </div>
+                    
+                    <a href="presale.html" class="cta-button" style="display: inline-block; margin-top: 2rem;">
+                        <i class="fas fa-rocket"></i> Join the Revolution
+                    </a>
                 </div>
-            </div>
-        </section>
-
-        <section id="solution" class="glass-section">
-            <div class="section-content">
-                <h2>The $BOND Solution</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-link"></i>
-                        <h3>Multi-Chain Architecture</h3>
-                        <p>Native deployment on Ethereum, Base, and BSC with seamless cross-chain operations and unified liquidity pools.</p>
+                
+                <div class="hero-visual">
+                    <div class="blockchain-visual">
+                        <div class="chain-link" style="top: 0; left: 50%; transform: translateX(-50%);">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="chain-link" style="top: 25%; right: 0;">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="chain-link" style="bottom: 25%; right: 0;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="chain-link" style="bottom: 0; left: 50%; transform: translateX(-50%);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="chain-link" style="bottom: 25%; left: 0;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="chain-link" style="top: 25%; left: 0;">
+                            <i class="fas fa-lock"></i>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Security First</h3>
-                        <p>Multi-signature governance, time-locked contracts, and regular security audits ensure your assets remain safe.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-exchange-alt"></i>
-                        <h3>DeFi Integration</h3>
-                        <p>Advanced yield optimization protocols and liquidity aggregation across multiple chains.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>BLOCKCHAINS.BOND</h4>
-                <p>Revolutionizing Digital Finance</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="tokenomics.html">Tokenomics</a>
-                <a href="technology.html">Technology</a>
-                <a href="staking.html">Staking</a>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-medium"></i></a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 BLOCKCHAINS.BOND. All rights reserved.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Revolutionary Features</h2>
+                <p class="section-subtitle">Transforming traditional bond markets through cutting-edge blockchain technology</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="feature-title">Complete Transparency</h3>
+                    <p class="feature-description">Every transaction, bond issuance, and interest payment is recorded on the blockchain, providing unprecedented transparency for investors and regulators.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Democratized Access</h3>
+                    <p class="feature-description">Break down barriers to entry with fractional bond ownership, enabling smaller investors to participate in government bond markets previously reserved for institutions.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="feature-title">Official State Backing</h3>
+                    <p class="feature-description">Partnered with government ministers and official state entities worldwide, ensuring legitimacy, regulatory compliance, and sovereign backing.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Instant Settlement</h3>
+                    <p class="feature-description">Smart contracts automate interest payments and bond redemptions, reducing settlement times from days to minutes while eliminating intermediary fees.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Enhanced Security</h3>
+                    <p class="feature-description">Military-grade encryption and decentralized architecture protect against fraud, cyber attacks, and single points of failure.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Analytics</h3>
+                    <p class="feature-description">Advanced dashboard provides real-time portfolio tracking, yield analysis, and market insights powered by blockchain data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presale Section -->
+    <section id="presale" class="presale">
+        <div class="container">
+            <div class="presale-content">
+                <div class="presale-info">
+                    <h2>BBT Token Presale</h2>
+                    <p class="subtitle">Get exclusive early access to Blockchains.Bond Token (BBT) at heavily discounted prices before public launch</p>
+                    
+                    <div class="presale-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-value">$0.12</div>
+                            <div class="highlight-label">Presale Price</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-value">$0.25</div>
+                            <div class="highlight-label">Public Price</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-value">108%</div>
+                            <div class="highlight-label">ROI at Launch</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-value">25%</div>
+                            <div class="highlight-label">Max Bonus</div>
+                        </div>
+                    </div>
+
+                    <div class="presale-benefits">
+                        <h4>Presale Exclusive Benefits:</h4>
+                        <ul>
+                            <li>52% discount from public launch price</li>
+                            <li>Tiered bonus system up to 25% extra tokens</li>
+                            <li>Guaranteed token allocation via airdrop</li>
+                            <li>Early access to bond tokenization platform</li>
+                            <li>Governance rights and voting power</li>
+                            <li>VIP investor community membership</li>
+                        </ul>
+                    </div>
+
+                    <div class="presale-cta">
+                        <a href="presale.html" class="presale-button">
+                            <i class="fas fa-fire"></i> Join Presale Now
+                        </a>
+                        <a href="#how-it-works" class="presale-button secondary">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="presale-visual">
+                    <div class="token-visual">
+                        <i class="fas fa-coins token-icon"></i>
+                    </div>
+                    
+                    <div class="countdown-display">
+                        <div class="countdown-title">Presale Ends In:</div>
+                        <div class="countdown-time" id="presale-countdown">15 Days 08:42:30</div>
+                        <p style="opacity: 0.8; margin-top: 1rem;">Limited time opportunity - Don't miss out!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Simple, secure, and transparent bond tokenization process</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="feature-title">Government Partnership</h3>
+                    <p class="feature-description">Official state entities partner with Blockchains.Bond to tokenize their bond offerings with full regulatory compliance.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="feature-title">Bond Tokenization</h3>
+                    <p class="feature-description">Traditional bonds are converted into blockchain-based tokens, maintaining all legal rights and obligations while adding digital benefits.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="feature-title">Investor Access</h3>
+                    <p class="feature-description">Qualified investors can purchase fractional or whole tokenized bonds through our secure platform with KYC/AML verification.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="feature-title">Automated Management</h3>
+                    <p class="feature-description">Smart contracts automatically handle interest payments, maturity redemptions, and compliance reporting without manual intervention.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnerships Section -->
+    <section id="partnerships" class="partnerships">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">Global Government Partnerships</h2>
+                <p class="section-subtitle" style="color: #cbd5e1;">Trusted by ministers and state entities worldwide for official bond tokenization</p>
+            </div>
+            
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-flag">🇺🇸</div>
+                    <h4>United States</h4>
+                    <p>Federal Reserve Collaboration</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-flag">🇪🇺</div>
+                    <h4>European Union</h4>
+                    <p>EIB Digital Bond Initiative</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-flag">🇸🇬</div>
+                    <h4>Singapore</h4>
+                    <p>MAS Regulatory Sandbox</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-flag">🇨🇭</div>
+                    <h4>Switzerland</h4>
+                    <p>Canton Digital Bonds</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-flag">🇯🇵</div>
+                    <h4>Japan</h4>
+                    <p>Ministry of Finance Partnership</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-flag">🇦🇺</div>
+                    <h4>Australia</h4>
+                    <p>RBA Digital Currency Initiative</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div>
+                    <h2 class="section-title">Partner With Us</h2>
+                    <p class="section-subtitle">Join the future of government bond markets</p>
+                    
+                    <div style="margin: 3rem 0;">
+                        <h4 style="color: #1e3a8a; margin-bottom: 1rem;">For Government Entities:</h4>
+                        <p style="margin-bottom: 2rem;">• Reduce issuance costs by up to 40%<br>• Increase retail investor participation<br>• Enhance transparency and compliance<br>• Access global capital markets</p>
+                        
+                        <h4 style="color: #1e3a8a; margin-bottom: 1rem;">For Investors:</h4>
+                        <p>• Fractional bond ownership<br>• Instant liquidity<br>• Real-time portfolio tracking<br>• Enhanced security and transparency</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organization">Organization</label>
+                            <input type="text" id="organization" name="organization" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select id="role" name="role" style="width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 8px;">
+                                <option value="">Select Your Role</option>
+                                <option value="government">Government Official</option>
+                                <option value="investor">Institutional Investor</option>
+                                <option value="advisor">Financial Advisor</option>
+                                <option value="media">Media/Press</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Blockchains.Bond</h3>
+                    <p>The world's first official state bond tokenization platform, democratizing access to government bonds through blockchain technology.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#features">Features</a>
+                    <a href="#presale">Presale</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#partnerships">Partnerships</a>
+                    <a href="#contact">Contact</a>
+                    <a href="presale.html">Join Presale</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Regulatory Compliance</a>
+                    <a href="#">Security</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> info@blockchains.bond</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Global Headquarters</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Blockchains.Bond. All rights reserved. | Licensed and regulated worldwide.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you within 24 hours.');
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Countdown timer for presale
+        function updatePresaleCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 15);
+            endDate.setHours(23, 59, 59);
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = endDate - now;
+
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    document.getElementById('presale-countdown').textContent = 
+                        `${days} Days ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                } else {
+                    document.getElementById('presale-countdown').textContent = 'Presale Ended';
+                }
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        updatePresaleCountdown();
+    </script>
 </body>
 </html>
