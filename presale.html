@@ -428,22 +428,6 @@
             line-height: 1.6;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .presale-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .countdown-timer {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .presale-title {
-                font-size: 2rem;
-            }
-        }
-
         /* Loading Animation */
         .loading {
             display: inline-block;
@@ -457,6 +441,102 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .main-content {
+                padding: 2rem 0;
+            }
+            
+            .presale-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .presale-info,
+            .investment-panel {
+                padding: 2rem;
+            }
+            
+            .presale-title {
+                font-size: 2rem;
+            }
+            
+            .panel-title {
+                font-size: 1.5rem;
+            }
+            
+            .countdown-timer {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .time-unit {
+                padding: 0.5rem;
+            }
+            
+            .time-number {
+                font-size: 1.5rem;
+            }
+            
+            .presale-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+            
+            .tokenomics {
+                padding: 2rem;
+                margin-top: 2rem;
+            }
+            
+            .tokenomics-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .tokenomics-card {
+                padding: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .presale-title {
+                font-size: 1.8rem;
+            }
+            
+            .panel-title {
+                font-size: 1.3rem;
+            }
+            
+            .countdown-timer {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .time-number {
+                font-size: 1.2rem;
+            }
+            
+            .time-label {
+                font-size: 0.8rem;
+            }
+            
+            .investment-panel,
+            .presale-info {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -661,314 +741,283 @@
         <div class="container">
             <div class="disclaimer">
                 <p><strong>Important Disclaimer:</strong> This is a private presale for BBT tokens. Tokens will be airdropped to your wallet address after the public launch. This offering is limited to qualified investors only. Please ensure you understand the risks involved in cryptocurrency investments. By participating, you acknowledge that you are investing in a high-risk asset and that the value of tokens may fluctuate significantly.</p>
-                <p style="margin-top: 1rem;"><strong>Presale Wallet:</strong> 0xd9c940f5fD289e20D0fbFfCE24Ed674CAB6f250e</p>
+                <p style="margin-top: 1rem;"><strong>Presale Wallet:</strong> 0x742d35Cc6634C0532925a3b8D8A5a5B5C5e5a5b5</p>
             </div>
         </div>
     </div>
 
-<script>
-    // Global variables
-    let web3;
-    let userAccount;
-    const PRESALE_WALLET = '0xd9c940f5fD289e20D0fbFfCE24Ed674CAB6f250e'; // Replace with your actual wallet
-    const BBT_PRICE_ETH = 0.00005; // 1 BBT = 0.00005 ETH ($0.12 at $2400 ETH)
-    
-    // Investment tiers
-    const tiers = {
-        seed: { minETH: 10, bonus: 25 },
-        private: { minETH: 5, bonus: 15 },
-        early: { minETH: 1, bonus: 10 },
-        standard: { minETH: 0.1, bonus: 0 }
-    };
+    <script>
+        // Global variables
+        let web3;
+        let userAccount;
+        const PRESALE_WALLET = '0x742d35Cc6634C0532925a3b8D8A5a5B5C5e5a5b5'; // Replace with actual wallet
+        const BBT_PRICE_ETH = 0.00005; // 1 BBT = 0.00005 ETH ($0.12 at $2400 ETH)
+        
+        // Investment tiers
+        const tiers = {
+            seed: { minETH: 10, bonus: 25 },
+            private: { minETH: 5, bonus: 15 },
+            early: { minETH: 1, bonus: 10 },
+            standard: { minETH: 0.1, bonus: 0 }
+        };
 
-    let selectedTier = 'early';
+        let selectedTier = 'early';
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeCountdown();
-        setupEventListeners();
-        updateCalculation();
-    });
-
-    // Countdown timer
-    function initializeCountdown() {
-        const endDate = new Date();
-        endDate.setDate(endDate.getDate() + 15);
-        endDate.setHours(23, 59, 59);
-
-        function updateCountdown() {
-            const now = new Date();
-            const timeLeft = endDate - now;
-
-            if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            }
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    }
-
-    // Event listeners
-    function setupEventListeners() {
-        // Wallet connection
-        document.getElementById('connectWallet').addEventListener('click', connectWallet);
-
-        // Tier selection
-        document.querySelectorAll('.tier-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
-                this.classList.add('selected');
-                selectedTier = this.dataset.tier;
-                updateCalculation();
-            });
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCountdown();
+            setupEventListeners();
+            updateCalculation();
         });
 
-        // ETH amount input
-        document.getElementById('ethAmount').addEventListener('input', updateCalculation);
+        // Countdown timer
+        function initializeCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 15);
+            endDate.setHours(23, 59, 59);
 
-        // Invest button
-        document.getElementById('investButton').addEventListener('click', makeInvestment);
-    }
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = endDate - now;
 
-    // Connect wallet - FIXED VERSION
-    async function connectWallet() {
-        if (typeof window.ethereum !== 'undefined') {
-            try {
-                // Request account access
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                
-                // Initialize web3
-                web3 = new Web3(window.ethereum);
-                
-                // Get accounts
-                const accounts = await web3.eth.getAccounts();
-                userAccount = accounts[0];
-                
-                // Check if we're on the right network (Mainnet)
-                const chainId = await web3.eth.getChainId();
-                if (chainId !== 1) {
-                    showAlert('Please switch to Ethereum Mainnet to participate in the presale.', 'error');
-                    return;
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
                 }
-                
-                // Update UI
-                document.getElementById('connectWallet').innerHTML = `<i class="fas fa-check"></i> ${userAccount.substring(0, 6)}...${userAccount.substring(38)}`;
-                document.getElementById('investButton').disabled = false;
-                document.getElementById('investButton').innerHTML = '<i class="fas fa-rocket"></i> Invest Now';
-                
-                showAlert('Wallet connected successfully!', 'success');
-                
-                // Listen for account changes
-                window.ethereum.on('accountsChanged', function (accounts) {
-                    if (accounts.length === 0) {
-                        // User disconnected wallet
-                        userAccount = null;
-                        document.getElementById('connectWallet').innerHTML = '<i class="fas fa-wallet"></i> Connect Wallet';
-                        document.getElementById('investButton').disabled = true;
-                        document.getElementById('investButton').innerHTML = '<i class="fas fa-rocket"></i> Connect Wallet to Invest';
-                    } else {
-                        userAccount = accounts[0];
-                        document.getElementById('connectWallet').innerHTML = `<i class="fas fa-check"></i> ${userAccount.substring(0, 6)}...${userAccount.substring(38)}`;
-                    }
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Event listeners
+        function setupEventListeners() {
+            // Wallet connection
+            document.getElementById('connectWallet').addEventListener('click', connectWallet);
+
+            // Tier selection
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedTier = this.dataset.tier;
+                    updateCalculation();
                 });
-                
-            } catch (error) {
-                console.error('Wallet connection error:', error);
-                showAlert('Failed to connect wallet: ' + error.message, 'error');
-            }
-        } else {
-            showAlert('Please install MetaMask to participate in the presale.', 'error');
-        }
-    }
-
-    // Update calculation
-    function updateCalculation() {
-        const ethAmount = parseFloat(document.getElementById('ethAmount').value) || 0;
-        const tierInfo = tiers[selectedTier];
-        
-        // Calculate base tokens
-        const baseTokens = ethAmount / BBT_PRICE_ETH;
-        
-        // Calculate bonus tokens
-        const bonusTokens = baseTokens * (tierInfo.bonus / 100);
-        
-        // Total tokens
-        const totalTokens = baseTokens + bonusTokens;
-        
-        // Update display
-        document.getElementById('baseTokens').textContent = formatNumber(baseTokens);
-        document.getElementById('bonusTokens').textContent = formatNumber(bonusTokens);
-        document.getElementById('totalTokens').textContent = formatNumber(totalTokens);
-        
-        // Update button state
-        const investButton = document.getElementById('investButton');
-        if (userAccount && ethAmount >= tierInfo.minETH) {
-            investButton.disabled = false;
-            investButton.innerHTML = `<i class="fas fa-rocket"></i> Invest ${ethAmount} ETH`;
-        } else if (userAccount && ethAmount < tierInfo.minETH && ethAmount > 0) {
-            investButton.disabled = true;
-            investButton.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Minimum ${tierInfo.minETH} ETH`;
-        } else if (userAccount) {
-            investButton.disabled = false;
-            investButton.innerHTML = '<i class="fas fa-rocket"></i> Invest Now';
-        }
-    }
-
-    // Make investment - COMPLETELY REWRITTEN VERSION
-    async function makeInvestment() {
-        const ethAmount = parseFloat(document.getElementById('ethAmount').value);
-        const tierInfo = tiers[selectedTier];
-        
-        // Validation
-        if (!userAccount) {
-            showAlert('Please connect your wallet first.', 'error');
-            return;
-        }
-        
-        if (!ethAmount || ethAmount <= 0) {
-            showAlert('Please enter a valid investment amount.', 'error');
-            return;
-        }
-        
-        if (ethAmount < tierInfo.minETH) {
-            showAlert(`Minimum investment for ${selectedTier} tier is ${tierInfo.minETH} ETH.`, 'error');
-            return;
-        }
-        
-        // Check if wallet address is valid
-        if (!web3.utils.isAddress(PRESALE_WALLET)) {
-            showAlert('Invalid presale wallet address. Please contact support.', 'error');
-            return;
-        }
-        
-        try {
-            // Update button to loading state
-            const investButton = document.getElementById('investButton');
-            const originalButtonText = investButton.innerHTML;
-            investButton.disabled = true;
-            investButton.innerHTML = '<div class="loading"></div> Processing Transaction...';
-            
-            // Check user balance
-            const balance = await web3.eth.getBalance(userAccount);
-            const balanceInEth = web3.utils.fromWei(balance, 'ether');
-            
-            if (parseFloat(balanceInEth) < ethAmount) {
-                throw new Error('Insufficient ETH balance');
-            }
-            
-            // Estimate gas
-            const gasEstimate = await web3.eth.estimateGas({
-                from: userAccount,
-                to: PRESALE_WALLET,
-                value: web3.utils.toWei(ethAmount.toString(), 'ether')
             });
+
+            // ETH amount input
+            document.getElementById('ethAmount').addEventListener('input', updateCalculation);
+
+            // Invest button
+            document.getElementById('investButton').addEventListener('click', makeInvestment);
+        }
+
+        // Connect wallet
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    web3 = new Web3(window.ethereum);
+                    const accounts = await web3.eth.getAccounts();
+                    userAccount = accounts[0];
+                    
+                    const chainId = await web3.eth.getChainId();
+                    if (chainId !== 1) {
+                        showAlert('Please switch to Ethereum Mainnet to participate in the presale.', 'error');
+                        return;
+                    }
+                    
+                    document.getElementById('connectWallet').innerHTML = `<i class="fas fa-check"></i> ${userAccount.substring(0, 6)}...${userAccount.substring(38)}`;
+                    document.getElementById('investButton').disabled = false;
+                    document.getElementById('investButton').innerHTML = '<i class="fas fa-rocket"></i> Invest Now';
+                    
+                    showAlert('Wallet connected successfully!', 'success');
+                    
+                    window.ethereum.on('accountsChanged', function (accounts) {
+                        if (accounts.length === 0) {
+                            userAccount = null;
+                            document.getElementById('connectWallet').innerHTML = '<i class="fas fa-wallet"></i> Connect Wallet';
+                            document.getElementById('investButton').disabled = true;
+                            document.getElementById('investButton').innerHTML = '<i class="fas fa-rocket"></i> Connect Wallet to Invest';
+                        } else {
+                            userAccount = accounts[0];
+                            document.getElementById('connectWallet').innerHTML = `<i class="fas fa-check"></i> ${userAccount.substring(0, 6)}...${userAccount.substring(38)}`;
+                        }
+                    });
+                    
+                } catch (error) {
+                    console.error('Wallet connection error:', error);
+                    showAlert('Failed to connect wallet: ' + error.message, 'error');
+                }
+            } else {
+                showAlert('Please install MetaMask to participate in the presale.', 'error');
+            }
+        }
+
+        // Update calculation
+        function updateCalculation() {
+            const ethAmount = parseFloat(document.getElementById('ethAmount').value) || 0;
+            const tierInfo = tiers[selectedTier];
             
-            // Get current gas price
-            const gasPrice = await web3.eth.getGasPrice();
-            
-            // Send transaction
-            const transactionHash = await web3.eth.sendTransaction({
-                from: userAccount,
-                to: PRESALE_WALLET,
-                value: web3.utils.toWei(ethAmount.toString(), 'ether'),
-                gas: Math.round(gasEstimate * 1.2), // Add 20% buffer
-                gasPrice: gasPrice
-            });
-            
-            // Calculate tokens for confirmation
             const baseTokens = ethAmount / BBT_PRICE_ETH;
             const bonusTokens = baseTokens * (tierInfo.bonus / 100);
             const totalTokens = baseTokens + bonusTokens;
             
-            // Success message
-            showAlert(`
-                <strong>Investment Successful!</strong><br>
-                Transaction Hash: ${transactionHash.transactionHash || transactionHash}<br>
-                You will receive <strong>${formatNumber(totalTokens)} BBT tokens</strong> via airdrop after public launch.<br>
-                <small>Save this transaction hash for your records.</small>
-            `, 'success');
+            document.getElementById('baseTokens').textContent = formatNumber(baseTokens);
+            document.getElementById('bonusTokens').textContent = formatNumber(bonusTokens);
+            document.getElementById('totalTokens').textContent = formatNumber(totalTokens);
             
-            // Reset form
-            document.getElementById('ethAmount').value = '';
-            updateCalculation();
-            
-            // Reset button after delay
-            setTimeout(() => {
-                investButton.disabled = false;
-                investButton.innerHTML = originalButtonText;
-            }, 5000);
-            
-        } catch (error) {
-            console.error('Investment error:', error);
-            
-            // Reset button immediately on error
             const investButton = document.getElementById('investButton');
-            investButton.disabled = false;
-            investButton.innerHTML = '<i class="fas fa-rocket"></i> Invest Now';
+            if (userAccount && ethAmount >= tierInfo.minETH) {
+                investButton.disabled = false;
+                investButton.innerHTML = `<i class="fas fa-rocket"></i> Invest ${ethAmount} ETH`;
+            } else if (userAccount && ethAmount < tierInfo.minETH && ethAmount > 0) {
+                investButton.disabled = true;
+                investButton.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Minimum ${tierInfo.minETH} ETH`;
+            } else if (userAccount) {
+                investButton.disabled = false;
+                investButton.innerHTML = '<i class="fas fa-rocket"></i> Invest Now';
+            }
+        }
+
+        // Make investment
+        async function makeInvestment() {
+            const ethAmount = parseFloat(document.getElementById('ethAmount').value);
+            const tierInfo = tiers[selectedTier];
             
-            // Handle different error types
-            if (error.code === 4001) {
-                showAlert('Transaction cancelled by user.', 'info');
-            } else if (error.message.includes('insufficient funds')) {
-                showAlert('Insufficient ETH balance to complete this transaction.', 'error');
-            } else if (error.message.includes('User denied')) {
-                showAlert('Transaction denied by user.', 'info');
+            if (!userAccount) {
+                showAlert('Please connect your wallet first.', 'error');
+                return;
+            }
+            
+            if (!ethAmount || ethAmount <= 0) {
+                showAlert('Please enter a valid investment amount.', 'error');
+                return;
+            }
+            
+            if (ethAmount < tierInfo.minETH) {
+                showAlert(`Minimum investment for ${selectedTier} tier is ${tierInfo.minETH} ETH.`, 'error');
+                return;
+            }
+            
+            if (!web3.utils.isAddress(PRESALE_WALLET)) {
+                showAlert('Invalid presale wallet address. Please contact support.', 'error');
+                return;
+            }
+            
+            try {
+                const investButton = document.getElementById('investButton');
+                const originalButtonText = investButton.innerHTML;
+                investButton.disabled = true;
+                investButton.innerHTML = '<div class="loading"></div> Processing Transaction...';
+                
+                const balance = await web3.eth.getBalance(userAccount);
+                const balanceInEth = web3.utils.fromWei(balance, 'ether');
+                
+                if (parseFloat(balanceInEth) < ethAmount) {
+                    throw new Error('Insufficient ETH balance');
+                }
+                
+                const gasEstimate = await web3.eth.estimateGas({
+                    from: userAccount,
+                    to: PRESALE_WALLET,
+                    value: web3.utils.toWei(ethAmount.toString(), 'ether')
+                });
+                
+                const gasPrice = await web3.eth.getGasPrice();
+                
+                const transactionHash = await web3.eth.sendTransaction({
+                    from: userAccount,
+                    to: PRESALE_WALLET,
+                    value: web3.utils.toWei(ethAmount.toString(), 'ether'),
+                    gas: Math.round(gasEstimate * 1.2),
+                    gasPrice: gasPrice
+                });
+                
+                const baseTokens = ethAmount / BBT_PRICE_ETH;
+                const bonusTokens = baseTokens * (tierInfo.bonus / 100);
+                const totalTokens = baseTokens + bonusTokens;
+                
+                showAlert(`
+                    <strong>Investment Successful!</strong><br>
+                    Transaction Hash: ${transactionHash.transactionHash || transactionHash}<br>
+                    You will receive <strong>${formatNumber(totalTokens)} BBT tokens</strong> via airdrop after public launch.<br>
+                    <small>Save this transaction hash for your records.</small>
+                `, 'success');
+                
+                document.getElementById('ethAmount').value = '';
+                updateCalculation();
+                
+                setTimeout(() => {
+                    investButton.disabled = false;
+                    investButton.innerHTML = originalButtonText;
+                }, 5000);
+                
+            } catch (error) {
+                console.error('Investment error:', error);
+                
+                const investButton = document.getElementById('investButton');
+                investButton.disabled = false;
+                investButton.innerHTML = '<i class="fas fa-rocket"></i> Invest Now';
+                
+                if (error.code === 4001) {
+                    showAlert('Transaction cancelled by user.', 'info');
+                } else if (error.message.includes('insufficient funds')) {
+                    showAlert('Insufficient ETH balance to complete this transaction.', 'error');
+                } else if (error.message.includes('User denied')) {
+                    showAlert('Transaction denied by user.', 'info');
+                } else {
+                    showAlert('Transaction failed: ' + (error.message || 'Unknown error occurred'), 'error');
+                }
+            }
+        }
+
+        // Utility functions
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(2) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(2) + 'K';
             } else {
-                showAlert('Transaction failed: ' + (error.message || 'Unknown error occurred'), 'error');
+                return num.toFixed(0);
             }
         }
-    }
 
-    // Utility functions
-    function formatNumber(num) {
-        if (num >= 1000000) {
-            return (num / 1000000).toFixed(2) + 'M';
-        } else if (num >= 1000) {
-            return (num / 1000).toFixed(2) + 'K';
-        } else {
-            return num.toFixed(0);
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = message;
+            
+            alertContainer.innerHTML = '';
+            alertContainer.appendChild(alert);
+            
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.remove();
+                }
+            }, type === 'success' ? 8000 : 5000);
         }
-    }
 
-    function showAlert(message, type) {
-        const alertContainer = document.getElementById('alertContainer');
-        const alert = document.createElement('div');
-        alert.className = `alert alert-${type}`;
-        alert.innerHTML = message;
-        
-        alertContainer.innerHTML = '';
-        alertContainer.appendChild(alert);
-        
-        // Auto-remove alert after 8 seconds for success messages
-        setTimeout(() => {
-            if (alert.parentNode) {
-                alert.remove();
-            }
-        }, type === 'success' ? 8000 : 5000);
-    }
-
-    // Check if wallet is already connected on page load
-    if (typeof window.ethereum !== 'undefined') {
-        window.ethereum.request({ method: 'eth_accounts' }).then(accounts => {
-            if (accounts.length > 0) {
-                web3 = new Web3(window.ethereum);
-                userAccount = accounts[0];
-                document.getElementById('connectWallet').innerHTML = `<i class="fas fa-check"></i> ${userAccount.substring(0, 6)}...${userAccount.substring(38)}`;
-                document.getElementById('investButton').disabled = false;
-                document.getElementById('investButton').innerHTML = '<i class="fas fa-rocket"></i> Invest Now';
-            }
-        }).catch(console.error);
-    }
-</script>
-
+        // Check if wallet is already connected on page load
+        if (typeof window.ethereum !== 'undefined') {
+            window.ethereum.request({ method: 'eth_accounts' }).then(accounts => {
+                if (accounts.length > 0) {
+                    web3 = new Web3(window.ethereum);
+                    userAccount = accounts[0];
+                    document.getElementById('connectWallet').innerHTML = `<i class="fas fa-check"></i> ${userAccount.substring(0, 6)}...${userAccount.substring(38)}`;
+                    document.getElementById('investButton').disabled = false;
+                    document.getElementById('investButton').innerHTML = '<i class="fas fa-rocket"></i> Invest Now';
+                }
+            }).catch(console.error);
+        }
+    </script>
 </body>
 </html>

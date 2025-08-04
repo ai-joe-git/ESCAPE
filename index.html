@@ -105,6 +105,22 @@
             box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
         }
 
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #1e3a8a;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%);
@@ -693,37 +709,246 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .blockchain-visual {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .token-visual {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .token-icon {
+                font-size: 4rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .cta-button {
+                display: none;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
             }
             
             .hero-content,
             .presale-content {
                 grid-template-columns: 1fr;
+                gap: 3rem;
                 text-align: center;
             }
             
-            .hero-text h1,
-            .presale-info h2 {
-                font-size: 2.5rem;
+            .hero-text h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-text .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
             }
             
             .hero-stats,
             .presale-highlights {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+                margin: 2rem 0;
             }
             
+            .stat-item,
+            .highlight-item {
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .hero-visual {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            
+            .blockchain-visual {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .chain-link {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .presale {
+                padding: 80px 0;
+            }
+            
+            .presale-info h2 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .presale-info .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .highlight-value {
+                font-size: 1.5rem;
+            }
+            
+            .token-visual {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .token-icon {
+                font-size: 3rem;
+            }
+            
+            .countdown-display {
+                padding: 1.5rem;
+            }
+            
+            .countdown-time {
+                font-size: 1.8rem;
+            }
+            
+            .presale-cta {
+                flex-direction: column;
+                margin-top: 2rem;
+            }
+            
+            .presale-button {
+                padding: 1rem;
+                font-size: 1rem;
+                justify-content: center;
+            }
+
+            .features {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+            
+            .feature-card {
+                padding: 2rem;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .feature-title {
+                font-size: 1.3rem;
+            }
+
             .contact-content {
                 grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
             }
             
             .step-card:not(:last-child)::after {
                 display: none;
             }
+        }
 
-            .presale-cta {
-                flex-direction: column;
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .presale-info h2 {
+                font-size: 1.8rem;
+            }
+            
+            .presale-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .blockchain-visual {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .chain-link {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            
+            .token-visual {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .token-icon {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -736,7 +961,12 @@
                 <i class="fas fa-link"></i>
                 Blockchains.Bond
             </div>
-            <ul class="nav-links">
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#presale">Presale</a></li>
@@ -1113,10 +1343,18 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('active');
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
